@@ -11,3 +11,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@font-face {
+  font-family: "온글잎위씨리스트";
+  src: url("./fonts/온글잎\ 위씨리스트.ttf");
+}
+
+.App {
+  font-family: "온글잎위씨리스트";
+  text-align: center;
+}
