@@ -1,23 +1,52 @@
+html,
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  /*  스크롤바 제거 */
+  background-color: #FFF5E2;
+  /* 배경색 적용 */
+  display: flex;
+  justify-content: center;
+  /* 가로 중앙 */
+  align-items: center;
+  /* 세로 중앙 */
 }
 
 @font-face {
   font-family: "온글잎위씨리스트";
-  src: url("./fonts/온글잎\ 위씨리스트.ttf");
+  src: url("./fonts/온글잎 위씨리스트.ttf");
 }
 
 .App {
   font-family: "온글잎위씨리스트";
   text-align: center;
+}
+
+/* 텍스트 스타일 */
+h1 {
+  font-size: 5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+/* 버튼 스타일 */
+button {
+  font-family: "온글잎위씨리스트";
+  padding: 15px 30px;
+  font-size: 1.5rem;
+  background-color: #ff7f50;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+/* 버튼에 커서가 닿았을떄 */
+button:hover {
+  background-color: #ff4500;
+  transform: scale(1.1);
 }
