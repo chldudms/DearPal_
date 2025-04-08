@@ -1,21 +1,21 @@
+// About.js
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Navibar from "./Navibar";
 
 const About = () => {
-    return(
+    const navigate = useNavigate();
 
-    <div> 
-    <Link to="/">Home</Link>
-            <Link to="/Post">Post</Link>
-            <Link to="/Profile">Profile</Link> 
-        
-        
-        <h1>about 화면 입니앙.</h1>
+    const letterPage = () => {
+        navigate("/Letter");
+    };
 
-     </div>
+    return (
+        <div>
+            <Navibar /> {/* 헤더 컴포넌트 삽입 */}
+            <button id="writeLetter" onClick={letterPage}>편지쓰기</button>
+        </div>
     );
-
-
-}
+};
 
 export default About;

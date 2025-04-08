@@ -1,4 +1,5 @@
 html,
+
 body {
   margin: 0;
   padding: 0;
@@ -15,10 +16,26 @@ body {
   /* 세로 중앙 */
 }
 
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #333;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
 @font-face {
   font-family: "온글잎위씨리스트";
   src: url("./fonts/온글잎 위씨리스트.ttf");
 }
+
+/* 미디어 타입이 screen이며, 뷰포트의 최소 너비가 768px 이상일 때 */
 
 .App {
   font-family: "온글잎위씨리스트";
@@ -32,6 +49,7 @@ h1 {
   color: #333;
 }
 
+@media screen and (min-width: 500px) {
 /* 버튼 스타일 */
 button {
   font-family: "온글잎위씨리스트";
@@ -45,8 +63,111 @@ button {
   transition: all 0.3s ease-in-out;
 }
 
+}
 /* 버튼에 커서가 닿았을떄 */
 button:hover {
   background-color: #ff4500;
   transform: scale(1.1);
 }
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff5e2;
+  padding: 1rem 0;
+  z-index: 1000;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  font-size: 50px;
+  /* 글씨 크기 키우기 */
+  padding: 20px 150px;
+  /* 클릭 영역 확장 */
+}
+
+.navbar a:hover {
+  color: #007bff;
+  /* 마우스 올리면 색 변경 */
+}
+
+#writeLetter{
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+}
+
+
+/* 전체 페이지 스타일 */
+.letter-container {
+  display: flex;
+  justify-content: center;
+
+}
+
+/* 편지지 스타일 */
+.letter-paper {
+  width: 450px;
+  padding: 20px;
+  background-color: #fffaf0;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 유선 편지지 배경 만들기 */
+.letter-paper::before {
+  content: "";
+  position: absolute;
+  top: 50px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  background-image: repeating-linear-gradient(transparent 0px,
+      transparent 23px,
+      #d4a373 24px);
+  /* 24px 간격으로 줄 만들기 */
+  opacity: 0.5;
+  z-index: 0;
+}
+
+/* 제목 입력 */
+.letter-title {
+  width: 100%;
+  font-size: 20px;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: none;
+  border-bottom: 2px solid #d4a373;
+  background: transparent;
+  outline: none;
+  text-align: center;
+  font-weight: bold;
+  position: relative;
+  z-index: 1;
+}
+
+/* 본문 입력 */
+.letter-content {
+  width: 100%;
+  height: 250px;
+  padding: 10px;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 16px;
+  resize: none;
+  line-height: 24px;
+  /* 줄 간격을 배경 줄과 맞춤 */
+  position: relative;
+  z-index: 1;
+}
+

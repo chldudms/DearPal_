@@ -1,7 +1,8 @@
 import React from "react";
-
+import Navibar from "./Navibar";
 const User = ({ userData }) => {
     return (
+        
         <tr>
             <td>{userData.name}</td>
             <td>{userData.email}</td>
@@ -16,19 +17,20 @@ const UserList = () => {
         { email: 'user3@gmail.com', name: '강대성' },
         { email: 'user4@gmail.com', name: '최승현' }
     ]
+
+ 
     return (
-        <table>
-            <thead>
-                <tr>
-                    <th></th>
-                    <th></th>
-                </tr>
-            </thead>
+      <div>
+            <Navibar />
+          <table>
             <tbody>
                 {users.map(user => <User userData={user} />)}
             </tbody>
         </table>
+      </div>
+      
     )
+
 }
 
 export default UserList;
