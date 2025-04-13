@@ -1,13 +1,11 @@
 html,
 
 body {
-  margin: 0;
-  padding: 0;
   width: 100vw;
   height: 100vh;
   overflow: hidden;
   /*  스크롤바 제거 */
-  background-color: #FFF5E2;
+  background-color: #F5F5F5;
   /* 배경색 적용 */
   display: flex;
   justify-content: center;
@@ -16,48 +14,49 @@ body {
   /* 세로 중앙 */
 }
 
-.header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 60px;
-  background-color: #333;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
+
 
 @font-face {
   font-family: "온글잎위씨리스트";
   src: url("./fonts/온글잎 위씨리스트.ttf");
 }
 
-/* 미디어 타입이 screen이며, 뷰포트의 최소 너비가 768px 이상일 때 */
+@font-face {
+  font-family: 'Pretendard-Regular';
+  src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
 
 .App {
-  font-family: "온글잎위씨리스트";
+  font-family: 'Pretendard-Regular';
   text-align: center;
 }
 
 /* 텍스트 스타일 */
 h1 {
-  font-size: 5rem;
+  margin-top: 20px;
+  font-size: 6rem;
   font-weight: bold;
-  color: #333;
+  color: #757575;
+}
+
+h2{
+  font-family: "온글잎위씨리스트";
+    margin-top: -40px;
+      /* 위로 올리기 */
 }
 
 @media screen and (min-width: 500px) {
 /* 버튼 스타일 */
 button {
-  font-family: "온글잎위씨리스트";
-  padding: 15px 30px;
+  padding: 20px 40px;
+  /* 버튼 크기 */
   font-size: 1.5rem;
-  background-color: #ff7f50;
-  color: white;
-  border: none;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  border: 1px solid #878787;
   border-radius: 50px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
@@ -66,7 +65,7 @@ button {
 }
 /* 버튼에 커서가 닿았을떄 */
 button:hover {
-  background-color: #ff4500;
+  background-color: #8e8e8e;
   transform: scale(1.1);
 }
 
@@ -91,83 +90,30 @@ button:hover {
 }
 
 .navbar a:hover {
-  color: #007bff;
+  color: #757575;
   /* 마우스 올리면 색 변경 */
 }
 
-#writeLetter{
-  position: fixed;
-  bottom: 50px;
-  right: 50px;
-}
-
-
-/* 전체 페이지 스타일 */
-.letter-container {
-  display: flex;
-  justify-content: center;
-
-}
-
-/* 편지지 스타일 */
-.letter-paper {
-  width: 450px;
-  padding: 20px;
-  background-color: #fffaf0;
-  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.letterWrapper {
   position: relative;
-  overflow: hidden;
+  display: inline-block;
 }
 
-/* 유선 편지지 배경 만들기 */
-.letter-paper::before {
-  content: "";
+.letterImg {
+  width: 500px;
+  height: auto;
+  display: block;
+  pointer-events: none;
+  /*클릭 이벤트 없애기*/
+}
+
+.tapeImg {
   position: absolute;
-  top: 50px;
-  left: 10px;
-  right: 10px;
-  bottom: 10px;
-  background-image: repeating-linear-gradient(transparent 0px,
-      transparent 23px,
-      #d4a373 24px);
-  /* 24px 간격으로 줄 만들기 */
-  opacity: 0.5;
-  z-index: 0;
+  top: 10px;
+  /* 레터 이미지 위에 살짝 겹치게 */
+  left: 15%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: auto;
+  pointer-events: none;
 }
-
-/* 제목 입력 */
-.letter-title {
-  width: 100%;
-  font-size: 20px;
-  padding: 10px;
-  margin-bottom: 15px;
-  border: none;
-  border-bottom: 2px solid #d4a373;
-  background: transparent;
-  outline: none;
-  text-align: center;
-  font-weight: bold;
-  position: relative;
-  z-index: 1;
-}
-
-/* 본문 입력 */
-.letter-content {
-  width: 100%;
-  height: 250px;
-  padding: 10px;
-  border: none;
-  background: transparent;
-  outline: none;
-  font-size: 16px;
-  resize: none;
-  line-height: 24px;
-  /* 줄 간격을 배경 줄과 맞춤 */
-  position: relative;
-  z-index: 1;
-}
-
