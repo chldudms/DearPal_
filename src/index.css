@@ -69,30 +69,7 @@ button:hover {
   transform: scale(1.1);
 }
 
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: #fff5e2;
-  padding: 1rem 0;
-  z-index: 1000;
-}
 
-.navbar a {
-  text-decoration: none;
-  color: black;
-  font-weight: bold;
-  font-size: 50px;
-  /* 글씨 크기 키우기 */
-  padding: 20px 150px;
-  /* 클릭 영역 확장 */
-}
-
-.navbar a:hover {
-  color: #757575;
-  /* 마우스 올리면 색 변경 */
-}
 
 .letterWrapper {
   position: relative;

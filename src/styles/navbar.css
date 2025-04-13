@@ -1,0 +1,54 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    padding: 1rem 0;
+    z-index: 1000;
+        padding: 0.1rem ;
+}
+
+.navContent {
+    
+    display: flex;
+    align-items: center;
+    /*세로축 정렬방향*/
+    justify-content:flex-end; 
+    /*가로축 정렬방향*/
+    margin-right: 40px;
+    gap: 20px;
+    /* 요소 간 간격 */
+}
+
+.navbar a {
+    text-decoration: none;
+    color: black;
+    font-size: 30px;
+    /* 글씨 크기 키우기 */
+    padding: 20px 50px;
+    /* 클릭 영역 확장 */
+}
+
+.navbar a:hover {
+    color: #757575;
+    /* 마우스 올리면 색 변경 */
+}
+
+.logo{
+    position: absolute;
+    font-size: 30px;
+    font-weight: bold;
+    display:flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-left: 20px;
+    margin: 40px;
+}
+
+.profile{
+    width: 70px;
+    height: auto;
+    
+}
+
