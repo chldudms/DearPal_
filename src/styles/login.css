@@ -1,0 +1,70 @@
+body {
+    position: relative;
+    min-height: 100vh;
+}
+
+.loginContainer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 600px;
+    height: 100vh;
+    padding: 50px;
+    background-color: #ffffff;
+    z-index: 1000;
+}
+
+/* 로그인 폼 내부 정렬 */
+.loginform {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    gap: 5px;
+}
+
+h3 {
+    font-size: 25px;
+    margin-top: 5px;
+}
+
+h5 {
+    font-size: 20px;
+    margin-left: 10px;
+    text-align: left;
+}
+
+.userid,
+.userpw {
+    background-color: #ffffff;
+    border: 2px solid #bdbdbd;
+    padding: 15px 20px;
+    border-radius: 50px;
+    font-size:30px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.loginBtn {
+    padding: 20px 0;
+    border-radius: 50px;
+    font-size: 16px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-left: auto;
+    margin-top: 50px;
+}
+
+.joinBtn {
+    padding: 20px 0;
+    border-radius: 50px;
+    font-size: 16px;
+    background-color: #FF0089;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-left: auto;
+}
