@@ -7,8 +7,6 @@ body {
   background: linear-gradient(to bottom, #FFB0D0, #FFFFFF);
   /* 배경색 적용 */
   display: flex;
-
-  /* 가로 중앙 */
   align-items: center;
   /* 세로 중앙 */
 }
@@ -34,18 +32,6 @@ body {
 }
 
 /* 텍스트 스타일 */
-h1 {
-  margin-top: 20px;
-  font-size: 6rem;
-  font-weight: bold;
-  color: #8E7DBE
-}
-
-h2 {
-  font-family: "온글잎위씨리스트";
-  margin-top: -40px;
-  /* 위로 올리기 */
-}
 
 @media screen and (min-width: 500px) {
 
@@ -71,8 +57,6 @@ h2 {
     background-color: #b0b0b0;
     transform: scale(1.1);
   }
-
-
 
 
 }

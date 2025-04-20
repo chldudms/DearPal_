@@ -19,9 +19,14 @@ function Home() {
             <h1>DEARPAL</h1>
             <h2>당신의 이야기를 편지로 남겨보세요.</h2>
 
-            <div className="login"></div>
-        </div>
+            <div className="authpage">
+                <button onClick={()=>navigate('/login')} className="blueBtn tologin">로그인</button>
+                <button onClick={() => navigate('/join')} className="pinkBtn tojoin" >회원 가입</button>
+            </div>
 
+            
+        </div>
+ 
 
     )
 

@@ -24,11 +24,11 @@ function Join() {
         <div>
 
             <Home />
-            <div className='loginContainer'>
+            <div className='JoinContainer'>
 
                 <h3>회원가입</h3>
 
-                <form className='loginform'>
+                <form className='Joginform'>
                     <h5>id</h5>
                     <input className='userid' value={userId} onChange={(e) => setUserId(e.target.value)} /> <br />
                     <h5>password</h5>
