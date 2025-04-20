@@ -1,11 +1,11 @@
-import Home from "./pages/Home"
+import Index from "./pages/index.js"
 import About from "./pages/About"
-import Counter from "./pages/Counter"
-import Input from "./pages/Input"
-import Input2 from "./pages/Input2.js"
 import List from "./pages/List"
 import Letter from "./pages/Letter.js"
 import Profile from "./pages/Profile.js"
+import Login from "./pages/Login.js";
+import Join from "./pages/Join.js";
+import Start from "./pages/start.js";
 import React from "react";
 import {Routes,Route,Link}from "react-router-dom";
 import { useMediaQuery } from 'react-responsive';
@@ -23,14 +23,16 @@ function App() {
     </nav>
 
     <Routes>
-        <Route path="/" element={<Home />}> </Route>
+        <Route path="/" element={<Index />}> </Route>
         <Route path="/About" element={<About />}> </Route>
         <Route path="/Profile" element={<Profile/>}></Route>
-        <Route path="/counter" element={<Counter />}> </Route>
-        <Route path="/input" element={<Input />}> </Route>
-        <Route path="/input2" element={<Input2 />}> </Route>
-        <Route path="/list" element={<List />}> </Route>
-        <Route path="/Letter" element={<Letter />} > </Route>
+        <Route path="/Login" element={<Login />}></Route>
+        <Route path="/start" element={<Start/>}></Route>
+        <Route path="/join" element={<Join />}></Route>
+
+        <Route path="*" element={<h1>404 Not Found 😭</h1>} />
+
+
     </Routes>
   
     </div>

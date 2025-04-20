@@ -44,7 +44,7 @@ h5 {
     box-sizing: border-box;
 }
 
-.loginBtn {
+.blueBtn {
     padding: 20px 0;
     border-radius: 50px;
     font-size: 16px;
@@ -57,7 +57,7 @@ h5 {
     margin-top: 50px;
 }
 
-.joinBtn {
+.pinkBtn {
     padding: 20px 0;
     border-radius: 50px;
     font-size: 16px;

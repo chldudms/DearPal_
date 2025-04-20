@@ -6,6 +6,10 @@ import "../styles/login.css"
 function Login() {
     const navigate = useNavigate();
 
+    const movepage = ()=>{
+
+    }
+
     return (
         <div>
 
@@ -23,11 +27,11 @@ function Login() {
                     <input className='userpw'></input>
                 </form>
 
-                <button className='loginBtn'>완료</button>
+                <button className='blueBtn'>완료</button>
                
                 <p>  <br />회원이 아니신가요?</p>
 
-                <button className='joinBtn'>회원가입</button>
+                <button className='pinkBtn' onClick={()=>navigate('/join')}>회원가입</button>
 
             </div>
 
