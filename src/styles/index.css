@@ -1,0 +1,33 @@
+body {
+position: relative;
+min-height: 100vh;
+}
+
+.letterWrapper {
+
+    position: relative;
+    width: 40%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    margin-left: 190px;
+    padding: 2rem;
+
+}
+
+h1 {
+    position: relative;
+}
+
+.letterImg {
+    width: 500px;
+    height: auto;
+    display: block;
+    pointer-events: none;
+    /*클릭 이벤트 없애기*/
+}
+
+#writeLetter {
+    margin-top: 100px;
+    margin-left: 300px;
+}
