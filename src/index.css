@@ -42,10 +42,8 @@ body {
     font-size: 1.5rem;
     background-color: #ffffff;
     color: rgb(0, 0, 0);
-    box-shadow: 3px 5px 3px #A6D6D6;
     border-radius: 50px;
     cursor: pointer;
-    transition: all 0.3s ease-in-out;
     border: none;
     margin: 0 40px;
     /*버튼 사이 간격*/

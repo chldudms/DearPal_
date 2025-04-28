@@ -1,0 +1,7 @@
+.writeBtn {
+    all: unset;
+    /* 기본 버튼 스타일 제거 */
+    position: fixed;
+    bottom: 50px;
+    right: 40px;
+}

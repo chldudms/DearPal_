@@ -1,7 +1,7 @@
-// About.js
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Navibar from "./Navibar";
+import '../styles/publicPostbox.css'
 
 const About = () => {
     const navigate = useNavigate();
@@ -13,7 +13,7 @@ const About = () => {
     return (
         <div>
             <Navibar /> {/* 헤더 컴포넌트 삽입 */}
-            <button id="writeLetter" onClick={letterPage}>편지쓰기</button>
+            <button className="writeBtn" onClick={letterPage}><img src="/img/plus.png" alt="plusBtn img"/></button>
         </div>
     );
 };

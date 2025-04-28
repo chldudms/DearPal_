@@ -29,6 +29,8 @@ function App() {
         <Route path="/Login" element={<Login />}></Route>
         <Route path="/start" element={<Start/>}></Route>
         <Route path="/join" element={<Join />}></Route>
+        <Route path="/Letter" element={<Letter />}></Route>
+
 
         <Route path="*" element={<h1>404 Not Found 😭</h1>} />
 
