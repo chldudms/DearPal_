@@ -4,7 +4,7 @@ body {
   height: 100vh;
   overflow: hidden;
   /*  스크롤바 제거 */
-  background: linear-gradient(to bottom, #FFB0D0, #FFFFFF);
+  background: linear-gradient(to bottom, #FEDCE0, #F0A5AE);
   /* 배경색 적용 */
   display: flex;
   align-items: center;
