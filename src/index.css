@@ -50,11 +50,6 @@ body {
   }
 
 
-  /* 버튼에 커서가 닿았을떄 */
-  button:hover {
-    background-color: #b0b0b0;
-    transform: scale(1.1);
-  }
 
 
 }
