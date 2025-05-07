@@ -15,7 +15,6 @@
 }
 
 
-
 /* X 버튼 */
 .closeBtn {
     position: absolute;
@@ -41,12 +40,18 @@
     color: #333;
 }
 
-.changeBtn {
+.logoutBtn {
     margin-top: 5px;
     padding: 6px 14px;
     background-color: #006FFF;
     border: none;
     border-radius: 20px;
     color: #fff;
-    cursor: none;
+}
+
+.shuffleBtn{
+    size: 50%;
+    position: absolute;
+    top: 80px;
+    right: 90px;
 }

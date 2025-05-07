@@ -21,14 +21,15 @@ function ProfileModal({ onClose }) {
 
                 <button onClick={onClose} className="closeBtn">❌</button>
 
-                    <img src={user.profileImg} alt="프로필" className="profileImg" />
-                    <button onClick={() => setSeed(randomSeed())} className="changeBtn">
-                        프로필 변경 </button>
+                <img src={user.profileImg} alt="프로필" className="profileImg" />
+                <img src="img/shuffle.png" onClick={() => setSeed(randomSeed())} className="shuffleBtn"></img>
 
-                    <div className="profileText">
-                        <h2 className="profileName">{user.name}</h2>
-                    </div>
-             
+                <div className="profileText">
+                    <h2 className="profileName">{user.name}</h2>
+                </div>
+                
+                <button className="logoutBtn"> 로그아웃 </button>
+
                 </div>
            
 

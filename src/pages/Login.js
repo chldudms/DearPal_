@@ -1,10 +1,13 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import Home from '.'
 import "../styles/login.css"
 
 function Login() {
     const navigate = useNavigate();
+
+    const [userId, setUserId] = useState();
+    const [userPw, setUserPw] = useState();
 
     const movepage = ()=>{
 
@@ -22,9 +25,9 @@ function Login() {
 
 
                     <h5>id</h5>
-                    <input className='userid' ></input> <br />
+                    <input className='userid' onChange={(e)=>setUserId(e.target.value)} ></input> <br />
                     <h5>password</h5>
-                    <input className='userpw'></input>
+                    <input className='userpw' onChange={(e) => setUserPw(e.target.value)} ></input>
                 </form>
 
                 <button className='blueBtn'>완료</button>
