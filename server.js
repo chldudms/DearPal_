@@ -5,6 +5,11 @@ const bcrypt = require('bcrypt'); //비밀번호 암호화해주는 라이브러
 const app = express();
 const dotenv = require('dotenv'); //.env파일로 민감한 정보 이동
 
+
+app.use(cors({
+    origin: 'http://localhost:3000', // 
+    credentials: true
+}));
 dotenv.config(); 
 
 app.use(cors());
@@ -50,6 +55,8 @@ app.post('/join', async (req, res) => {
         });
     });
 });
+
+
 
 app.listen(5000, () => {
     console.log('http://localhost:5000/join');

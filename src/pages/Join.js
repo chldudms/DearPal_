@@ -15,7 +15,7 @@ function Join() {
         if (userPw === pwCheck) {
 
             console.log(userName)
-            fetch('http://localhost:5000/join', {
+            fetch('/join', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
