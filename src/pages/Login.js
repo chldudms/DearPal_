@@ -12,26 +12,20 @@ function Login() {
    function gotoLogin(){
         console.log(userId,userPw);
 
-       fetch('/Login',{
-        method:'POST',
-        headers: {
-               'Content-Type': 'application/json'
-           },
-        body: JSON.stringify({
-            userId,
-            userPw
-        })
+       // 로그인 성공 후 받은 토큰을 로컬스토리지에 저장
+       fetch('/login', {
+           method: 'POST',
+           headers: { 'Content-Type': 'application/json' },
+           body: JSON.stringify({ userId, userPw })
        })
-        .then(res=>res.json()) //응답 json으로
-        .then(data=>{
-            if(data.message==="로그인 성공");
-            window.alert(data.message)
-                navigate('/About');
-        })
-        .catch(err=>{
-            console.log(err);
-            window.alert("서버 오류")
-        });
+           .then(res => res.json())
+           .then(data => {
+               if (data.token) {
+                   localStorage.setItem('token', data.token);  // 로컬스토리지에 저장
+                   navigate('/About');  // 페이지 이동
+               }
+           });
+
       if(userId.length===0)
         window.alert("아이디가 입력되지 않았습니다. ")
     }

@@ -4,6 +4,7 @@ const mysql = require('mysql2');
 const bcrypt = require('bcrypt'); //비밀번호 암호화해주는 라이브러리
 const app = express();
 const dotenv = require('dotenv'); //.env파일로 민감한 정보 이동
+const jwt = require('jsonwebtoken');  // JWT 라이브러리
 
 
 app.use(cors({
@@ -56,35 +57,37 @@ app.post('/join', async (req, res) => {
     });
 });
 
-app.post('/login', async(req,res)=>{
+
+
+app.post('/login', async (req, res) => {
     const { userId, userPw } = req.body;
 
-    // 1. DB에서 userId로 사용자 정보 조회
-    db.query('SELECT * FROM user WHERE userid = ?', [userId], (err, results) => {
+    // DB에서 사용자 정보 조회
+    db.query('SELECT * FROM user WHERE userid = ?', [userId], async (err, results) => {
         if (err) {
             return res.status(500).json({ message: '서버 오류' });
         }
 
         if (results.length > 0) {
-            const user = results[0]; // 첫 번째 결과가 해당 사용자의 정보
+            const user = results[0];
 
-            // 2. 입력한 비밀번호와 DB에 저장된 해시된 비밀번호 비교
-            bcrypt.compare(userPw, user.password, (err, isMatch) => {
-                if (err) {
-                    return res.status(500).json({ message: '비밀번호 확인 오류' });
-                }
+            //비밀번호 비교
+            const isMatch = await bcrypt.compare(userPw, user.password);
+            if (isMatch) {
+                //JWT토큰 생성(아이디와 유효기간 정보 포함)
+                const token = jwt.sign({ userId: user.userid, userName: user.username }, 'your_secret_key', { expiresIn: '1h' });
 
-                if (isMatch) {
-                    return res.json({ message: '로그인 성공' });
-                } else {
-                    return res.status(400).json({ message: '비밀번호가 일치하지 않습니다.' });
-                }
-            });
+                //토큰 클라이언트에 응답으로 전달
+                return res.json({ message: '로그인 성공', token });
+            } else {
+                return res.status(400).json({ message: '비밀번호가 일치하지 않습니다.' });
+            }
         } else {
             return res.status(400).json({ message: '아이디가 존재하지 않습니다.' });
         }
     });
 });
+
 
 
 app.listen(5000, () => {
