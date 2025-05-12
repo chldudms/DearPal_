@@ -1,5 +1,5 @@
 import React from "react";
-import Navibar from "./Navibar";
+import Navibar from "../components/Navibar";
 const User = ({ userData }) => {
     return (
         

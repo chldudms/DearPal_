@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../styles/navbar.css";
 import { useState } from "react";
-import ProfileModal from "./Profile"; 
+import ProfileModal from "../pages/Profile"; 
 
 
 const Navibar = () => {

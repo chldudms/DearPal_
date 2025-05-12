@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import Navibar from "./Navibar";
+import Navibar from "../components/Navibar";
 import '../styles/publicPostbox.css'
 
 const About = () => {
