@@ -9,12 +9,36 @@ function Login() {
     const [userId, setUserId] = useState();
     const [userPw, setUserPw] = useState();
 
-    const movepage = ()=>{
+   function gotoLogin(){
+        console.log(userId,userPw);
 
+       fetch('/Login',{
+        method:'POST',
+        headers: {
+               'Content-Type': 'application/json'
+           },
+        body: JSON.stringify({
+            userId,
+            userPw
+        })
+       })
+        .then(res=>res.json()) //응답 json으로
+        .then(data=>{
+            if(data.message==="로그인 성공");
+            window.alert(data.message)
+                navigate('/About');
+        })
+        .catch(err=>{
+            console.log(err);
+            window.alert("서버 오류")
+        });
+      if(userId.length===0)
+        window.alert("아이디가 입력되지 않았습니다. ")
     }
 
     return (
-        <div>
+        <div>,
+
 
             <Home />
             <div className='loginContainer'>
@@ -30,7 +54,7 @@ function Login() {
                     <input className='userpw' onChange={(e) => setUserPw(e.target.value)} ></input>
                 </form>
 
-                <button className='blueBtn'>완료</button>
+                <button className='blueBtn' onClick={gotoLogin}>완료</button>
                
                 <p>  <br />회원이 아니신가요?</p>
 

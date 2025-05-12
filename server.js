@@ -56,6 +56,35 @@ app.post('/join', async (req, res) => {
     });
 });
 
+app.post('/login', async(req,res)=>{
+    const { userId, userPw } = req.body;
+
+    // 1. DB에서 userId로 사용자 정보 조회
+    db.query('SELECT * FROM user WHERE userid = ?', [userId], (err, results) => {
+        if (err) {
+            return res.status(500).json({ message: '서버 오류' });
+        }
+
+        if (results.length > 0) {
+            const user = results[0]; // 첫 번째 결과가 해당 사용자의 정보
+
+            // 2. 입력한 비밀번호와 DB에 저장된 해시된 비밀번호 비교
+            bcrypt.compare(userPw, user.password, (err, isMatch) => {
+                if (err) {
+                    return res.status(500).json({ message: '비밀번호 확인 오류' });
+                }
+
+                if (isMatch) {
+                    return res.json({ message: '로그인 성공' });
+                } else {
+                    return res.status(400).json({ message: '비밀번호가 일치하지 않습니다.' });
+                }
+            });
+        } else {
+            return res.status(400).json({ message: '아이디가 존재하지 않습니다.' });
+        }
+    });
+});
 
 
 app.listen(5000, () => {
