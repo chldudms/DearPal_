@@ -42,6 +42,9 @@ app.post('/join', async (req, res) => {
         if (results.length > 0) {
             return res.json({ message: '이미 존재하는 아이디입니다.' });
         }
+        else if(err) {
+            return res.status(500).json({ message: '서버 오류' });
+        }
 
         const hashedPw = await bcrypt.hash(userPw, 10);  //비밀번호 해싱 (비밀번호,salt)
         console.log(hashedPw)
@@ -87,6 +90,21 @@ app.post('/login', async (req, res) => {
         }
     });
 });
+
+//편지 업로드 api (공동 편지함, 내 편지함에서 조회)
+app.post('/addLetter', async(req,res)=>{
+    const {title, letterContent, selectedColor, userId} = req.body;
+    var today = new Date();
+
+    db.query('INSERT INTO letter (letter_id, letter_title, letter_content, letter_color, writer_id, receiver_id, is_shared, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+        [8, title, letterContent, selectedColor, userId, null, 1, today],
+     (err,results)=>{
+        if (err) {
+            return res.status(500).json({ message: '서버 오류' });
+        }
+        res.json({message:'편지 업로드 성공'})
+    })
+})
 
 
 

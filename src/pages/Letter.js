@@ -1,13 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import '../styles/writeletter.css'
+import { useNavigate } from 'react-router-dom';
+import { jwtDecode } from "jwt-decode";
+
 
 function Letter() {
+    const navigate = useNavigate();
 
     const [title, setTitle] = useState("");
     const [letterContent, setContent] = useState("");
     const [letterColor, setColor] = useState(""); //편지지 컬러
     const [lineColor, setLine] = useState("");
-    const [selectedColor, setSelectedColor] = useState("");
+    const [selectedColor, setSelectedColor] = useState("white");
+    const [userId, setUserId] = useState("");
+
 
     const colorOptions = [
         { id: "blue", img: "/img/circle_blue.png", selectedImg: "/img/checkblue.png" },
@@ -39,6 +45,46 @@ function Letter() {
         function checkedButton() { }
     }
 
+    useEffect(() => {
+        const token = localStorage.getItem("token");  // JWT 가져오기
+        if (token) {
+            try {
+                const decoded = jwtDecode(token);
+                setUserId(decoded.userId);  // payload에서 userId 꺼내기
+            
+            } catch (err) {
+                console.error("토큰 디코딩 실패:", err);
+            }
+        }
+    }, []); //deps[] 처음 한 번만 실행
+
+
+   function addLetter(){
+      
+        console.log(title, letterContent)
+        //편지 업로드 요청
+            fetch('/addLetter', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ title, letterContent, selectedColor, userId })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.message === "편지 업로드 성공"){
+                        console.log("편지 업로드 성공");
+                        navigate("/About");
+                    } else {
+                        console.log(data.message);
+                    }
+                })
+                .catch(err => {
+                    console.error(err);
+                    window.alert("서버 오류 발생");
+                });
+                
+    }
+    
+
     return (
         <div >
             <div className="letter-container">
@@ -58,7 +104,7 @@ function Letter() {
                         onChange={(e) => setContent(e.target.value)}
                     />
 
-                    <button className="submitBtn">
+                    <button className="submitBtn" onClick={addLetter}>
                         편지 보내기
                     </button>
 
