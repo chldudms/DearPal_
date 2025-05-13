@@ -15,6 +15,7 @@ const Navibar = () => {
             try {
                 const decoded = jwtDecode(token);
                 setUserId(decoded.userId);
+                setSeed(decoded.profileSeed);
             
             } catch (err) {
                 console.error("토큰 디코딩 실패:", err);

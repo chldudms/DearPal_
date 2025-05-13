@@ -58,7 +58,7 @@ app.post('/join', async (req, res) => {
 });
 
 
-
+//로그인
 app.post('/login', async (req, res) => {
     const { userId, userPw } = req.body;
 
@@ -74,8 +74,8 @@ app.post('/login', async (req, res) => {
             //비밀번호 비교
             const isMatch = await bcrypt.compare(userPw, user.password);
             if (isMatch) {
-                //JWT토큰 생성(아이디와 유효기간 정보 포함)
-                const token = jwt.sign({ userId: user.userid, userName: user.username }, 'your_secret_key', { expiresIn: '1h' });
+                //JWT토큰 생성(유저정보와 유효기간 포함)
+                const token = jwt.sign({ userId: user.userid, userName: user.username, profileSeed: user.profile_seed  }, 'your_secret_key', { expiresIn: '1h' });
 
                 //토큰 클라이언트에 응답으로 전달
                 return res.json({ message: '로그인 성공', token });
