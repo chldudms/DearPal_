@@ -1,0 +1,67 @@
+.writeBtn {
+    all: unset;
+    /* 기본 버튼 스타일 제거 */
+    position: fixed;
+    bottom: 50px;
+    right: 40px;
+}
+
+.letter {
+    position: absolute;
+    top: 200px;
+    left: 80px;
+    /* 100 → 80 */
+    background-color: rgb(255, 255, 255);
+    width: 350px;
+    height: 200px;
+    padding: 20px;
+    border: 5px black;
+    margin: 15px;
+    border-radius: 5%;
+    box-shadow: 3px 5px 5px grey;
+}
+
+.letter2 {
+    position: absolute;
+    top: 200px;
+    left: 520px;
+    /* 550 → 520 */
+    background-color: rgb(255, 255, 255);
+    width: 350px;
+    height: 200px;
+    padding: 20px;
+    border: 5px black;
+    margin: 15px;
+    border-radius: 5%;
+    box-shadow: 3px 5px 5px grey;
+}
+
+.letter3 {
+    position: absolute;
+    top: 200px;
+    left: 960px;
+    /* 1000 → 960 */
+    background-color: rgb(255, 255, 255);
+    width: 350px;
+    height: 200px;
+    padding: 20px;
+    border: 5px black;
+    margin: 15px;
+    border-radius: 5%;
+    box-shadow: 3px 5px 5px grey;
+}
+
+.letter4 {
+    position: absolute;
+    top: 200px;
+    left: 1400px;
+    /* 1450 → 1400 */
+    background-color: rgb(255, 255, 255);
+    width: 350px;
+    height: 200px;
+    padding: 20px;
+    border: 5px black;
+    margin: 15px;
+    border-radius: 5%;
+    box-shadow: 3px 5px 5px grey;
+}

@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/main.bb6cd114.css",
+    "main.js": "/static/js/main.9edf50b4.js",
+    "static/js/453.8133eac9.chunk.js": "/static/js/453.8133eac9.chunk.js",
+    "static/media/온글잎 위씨리스트.ttf": "/static/media/온글잎 위씨리스트.7c45539d922b35378df9.ttf",
+    "index.html": "/index.html",
+    "main.bb6cd114.css.map": "/static/css/main.bb6cd114.css.map",
+    "main.9edf50b4.js.map": "/static/js/main.9edf50b4.js.map",
+    "453.8133eac9.chunk.js.map": "/static/js/453.8133eac9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.bb6cd114.css",
+    "static/js/main.9edf50b4.js"
+  ]
+}
