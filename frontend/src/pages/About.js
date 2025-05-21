@@ -28,6 +28,7 @@ const About = () => {
     <div>
             <Navibar /> {/* 헤더 컴포넌트 삽입 */}
             <button className="writeBtn" onClick={letterPage}><img src="/img/plus.png" alt="plusBtn img"/></button>
+            
         <div className="letterList">
             <div className="letter"></div>
             <h3 className="letterWriter"></h3>

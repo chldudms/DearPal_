@@ -16,10 +16,11 @@ router.post('/join', async (req, res) => {
     db.query('SELECT * FROM user WHERE userid = ?', [userId], async (err, results) => {
         if (results.length > 0) {
             return res.json({ message: '이미 존재하는 아이디입니다.' });
-        }
-        else if (err) {
+        } else if (err) {
             return res.status(500).json({ message: '서버 오류' });
         }
+
+
 
         const hashedPw = await bcrypt.hash(userPw, 10);  //비밀번호 해싱 (비밀번호,salt)
         console.log(hashedPw)
@@ -30,10 +31,19 @@ router.post('/join', async (req, res) => {
                 console.error(err);
                 return res.status(500).json({ message: '회원가입 중 오류가 발생했습니다.' });
             }
-            res.json({ message: '회원가입 성공' });
+
+            // JWT 토큰 생성
+            const token = jwt.sign(
+                { userId: userId, userName: userName, profileSeed: seed },
+                'your_secret_key',
+                { expiresIn: '1h' }
+            );
+
+            res.json({ message: '회원가입 성공', token});
         });
     });
 });
+
 
 
 //로그인

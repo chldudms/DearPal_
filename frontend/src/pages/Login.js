@@ -13,7 +13,7 @@ function Login() {
         console.log(userId,userPw);
 
        // 로그인 성공 후 받은 토큰을 로컬스토리지에 저장
-       fetch('/login', {
+       fetch('http://localhost:5000/login', {
            method: 'POST',
            headers: { 'Content-Type': 'application/json' },
            body: JSON.stringify({ userId, userPw })

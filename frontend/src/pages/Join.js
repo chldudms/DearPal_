@@ -15,22 +15,23 @@ function Join() {
         if (userPw === pwCheck) {
 
             console.log(userName)
-            fetch('/join', {
+            fetch('http://localhost:5000/join', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({
-                    userName,
-                    userId,
-                    userPw
-                })
+                body: JSON.stringify({userName,userId,userPw })
             })
                 .then(res => res.json())
                 .then(data => {
-                    if (data.message === "회원가입 성공") {
+                    if (data.message === "회원가입 성공"&&data.token) {
                         window.alert("가입 성공")
-                        navigate('/About');
+                        localStorage.setItem('token', data.token); // 저장!
+                        
+                        // 저장 이후 바로 이동
+                        setTimeout(() => {
+                            navigate('/About');
+                        }, 0);  
                     } else {
                         window.alert(data.message);
                     }

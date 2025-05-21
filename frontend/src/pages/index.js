@@ -24,12 +24,9 @@ function Home() {
                 <button onClick={() => navigate('/join')} className="pinkBtn tojoin" >회원 가입</button>
             </div>
 
-            
         </div>
  
-
     )
-
 }
 
 
