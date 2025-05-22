@@ -19,11 +19,14 @@ function ProfileModal({ onClose }) {
 
     useEffect(() => {
         const token = localStorage.getItem("token");  // JWT 가져오기
+        
         if (token) {
             try {
                 const decoded = jwtDecode(token);
                 setUserName(decoded.userName);  // payload에서 userId 꺼내기
                 setSeed(decoded.profileSeed);
+                console.log(userName) 
+                
             } catch (err) {
                 console.error("토큰 디코딩 실패:", err);
             }
@@ -42,7 +45,7 @@ function ProfileModal({ onClose }) {
         localStorage.removeItem("token");
         alert("로그아웃 되었습니다.");
 
-        setUserName("");       // userId 상태도 초기화!
+        setUserName("");       // userId 상태도 초기화
         setSeed(""); // 새 시드로 리셋해줘야 다음 로그인에 반영됨
 
         navigate("/Login")

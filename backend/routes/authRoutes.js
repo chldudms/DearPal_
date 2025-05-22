@@ -13,23 +13,21 @@ router.post('/join', async (req, res) => {
     console.log("요청 바디:", req.body);
 
     //중복된 userid 체크
-    db.query('SELECT * FROM user WHERE userid = ?', [userId], async (err, results) => {
+    db.query('SELECT * FROM user WHERE id = ?', [userId], async (err, results) => {
         if (results.length > 0) {
             return res.json({ message: '이미 존재하는 아이디입니다.' });
         } else if (err) {
             return res.status(500).json({ message: '서버 오류' });
         }
 
-
-
+        
         const hashedPw = await bcrypt.hash(userPw, 10);  //비밀번호 해싱 (비밀번호,salt)
         console.log(hashedPw)
 
         //사용자 정보 DB에 저장
-        db.query('INSERT INTO user (userid, username, password, profile_seed) VALUES (?, ?, ?, ?)', [userId, userName, hashedPw, seed], (err, result) => {
+        db.query('INSERT INTO user (id, username, password, profile_image) VALUES (?, ?, ?, ?)', [userId, userName, hashedPw, seed], (err, result) => {
             if (err) {
                 console.error(err);
-                return res.status(500).json({ message: '회원가입 중 오류가 발생했습니다.' });
             }
 
             // JWT 토큰 생성
@@ -38,7 +36,7 @@ router.post('/join', async (req, res) => {
                 'your_secret_key',
                 { expiresIn: '1h' }
             );
-
+            
             res.json({ message: '회원가입 성공', token});
         });
     });
@@ -51,7 +49,7 @@ router.post('/login', async (req, res) => {
     const { userId, userPw } = req.body;
 
     // DB에서 사용자 정보 조회
-    db.query('SELECT * FROM user WHERE userid = ?', [userId], async (err, results) => {
+    db.query('SELECT * FROM user WHERE id = ?', [userId], async (err, results) => {
         if (err) {
             return res.status(500).json({ message: '서버 오류' });
         }
@@ -63,7 +61,7 @@ router.post('/login', async (req, res) => {
             const isMatch = await bcrypt.compare(userPw, user.password);
             if (isMatch) {
                 //JWT토큰 생성(유저정보와 유효기간 포함)
-                const token = jwt.sign({ userId: user.userid, userName: user.username, profileSeed: user.profile_seed }, 'your_secret_key', { expiresIn: '1h' });
+                const token = jwt.sign({ userId: user.id, userName: user.username, profileSeed: user.profile_image }, 'your_secret_key', { expiresIn: '1h' });
 
                 //토큰 클라이언트에 응답으로 전달
                 return res.json({ message: '로그인 성공', token });

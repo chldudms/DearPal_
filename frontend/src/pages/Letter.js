@@ -41,32 +41,39 @@ function Letter() {
             setLine("#85CCFF")
             setSelectedColor(color)
         }
-
-        function checkedButton() { }
     }
 
     useEffect(() => {
-        const token = localStorage.getItem("token");  // JWT 가져오기
+        const token = localStorage.getItem("token");
+        console.log("토큰값:", token); // 토큰 제대로 저장됐는지 확인
+
         if (token) {
             try {
                 const decoded = jwtDecode(token);
-                setUserId(decoded.userId);  // payload에서 userId 꺼내기
-            
+                console.log("디코딩 결과:", decoded);
+                console.log("유저 아이디:", decoded.userId); 
+                
+                setUserId(decoded.userId);
             } catch (err) {
                 console.error("토큰 디코딩 실패:", err);
             }
+        } else {
+            console.log("토큰이 로컬스토리지에 없음");
         }
-    }, []); //deps[] 처음 한 번만 실행
+    }, []);
 
 
    function addLetter(){
-      
+       var today = new Date();
         console.log(title, letterContent)
+       console.log( today)
+       console.log('userId:', userId);
+
         //편지 업로드 요청
-            fetch('/addLetter', {
+       fetch('http://localhost:5000/addLetter', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ title, letterContent, selectedColor, userId })
+           body: JSON.stringify({userId, title, letterContent, selectedColor })
             })
                 .then(res => res.json())
                 .then(data => {
