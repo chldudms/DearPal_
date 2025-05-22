@@ -6,62 +6,46 @@
     right: 40px;
 }
 
-.letter {
-    position: absolute;
-    top: 200px;
-    left: 80px;
-    /* 100 → 80 */
-    background-color: rgb(255, 255, 255);
-    width: 350px;
-    height: 200px;
-    padding: 20px;
-    border: 5px black;
-    margin: 15px;
-    border-radius: 5%;
-    box-shadow: 3px 5px 5px grey;
+
+.letterList {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* 한 줄에 4개 */
+    gap: 60px;
+    padding: 70px;
 }
 
-.letter2 {
-    position: absolute;
-    top: 200px;
-    left: 520px;
-    /* 550 → 520 */
-    background-color: rgb(255, 255, 255);
+.letterItem {
+    position: relative;
+    /* 안의 텍스트 위치 잡으려면 필요! */
+    background-color: #f5f5f5;
     width: 350px;
     height: 200px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.2s ease;
     padding: 20px;
-    border: 5px black;
-    margin: 15px;
-    border-radius: 5%;
-    box-shadow: 3px 5px 5px grey;
+    overflow: hidden;
 }
 
-.letter3 {
-    position: absolute;
-    top: 200px;
-    left: 960px;
-    /* 1000 → 960 */
-    background-color: rgb(255, 255, 255);
-    width: 350px;
-    height: 200px;
-    padding: 20px;
-    border: 5px black;
-    margin: 15px;
-    border-radius: 5%;
-    box-shadow: 3px 5px 5px grey;
+.letterItem:hover {
+    transform: translateY(-10px);
 }
 
-.letter4 {
+.letterTitle {
     position: absolute;
-    top: 200px;
-    left: 1400px;
-    /* 1450 → 1400 */
-    background-color: rgb(255, 255, 255);
-    width: 350px;
-    height: 200px;
-    padding: 20px;
-    border: 5px black;
-    margin: 15px;
-    border-radius: 5%;
-    box-shadow: 3px 5px 5px grey;
+    bottom: 40px;
+    left: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+.letterSender {
+    position: absolute;
+    bottom: 10px;
+    left: 20px;
+    font-size: 14px;
+    color: #666;
 }

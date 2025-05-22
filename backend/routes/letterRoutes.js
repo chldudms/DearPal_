@@ -26,8 +26,29 @@ router.post('/addLetter', async (req, res) => {
 
 
 
-// app.get('/loadLetters', (req,res)=>{
-//     db.query()
-// })
+// 모든 편지 조회 api
+router.get('/openLetters', (req, res) => {
+    const sql = `
+        SELECT L.id, L.title, L.color, L.created_at,
+            U.username AS sender_name
+        FROM Letter L
+        JOIN User U ON L.sender_id = U.id
+        WHERE L.is_shared = TRUE
+        ORDER BY L.created_at DESC
+    `;
+
+    db.query(sql, (err, results) => {
+        if (err) {
+            console.error('DB 에러:', err);
+            return res.status(500).json({ message: '서버 오류' });
+        }
+
+        return res.json({
+            message: '공개 편지 로드 성공',
+            letters: results
+        });
+    });
+});
+
 
 module.exports = router;
