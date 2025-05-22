@@ -20,10 +20,16 @@ function Login() {
        })
            .then(res => res.json())
            .then(data => {
-               if (data.token) {
+               if (data.message === "로그인 성공"&&data.token) {
                    localStorage.setItem('token', data.token);  // 로컬스토리지에 저장
                    navigate('/About');  // 페이지 이동
+               } else {
+                   window.alert(data.message);
                }
+           })
+           .catch(err => {
+               console.error(err);
+               window.alert("서버 오류 발생");
            });
 
       if(userId.length===0)

@@ -20,7 +20,6 @@ router.post('/join', async (req, res) => {
             return res.status(500).json({ message: '서버 오류' });
         }
 
-        
         const hashedPw = await bcrypt.hash(userPw, 10);  //비밀번호 해싱 (비밀번호,salt)
         console.log(hashedPw)
 
@@ -36,7 +35,7 @@ router.post('/join', async (req, res) => {
                 'your_secret_key',
                 { expiresIn: '1h' }
             );
-            
+
             res.json({ message: '회원가입 성공', token});
         });
     });
@@ -47,6 +46,9 @@ router.post('/join', async (req, res) => {
 //로그인
 router.post('/login', async (req, res) => {
     const { userId, userPw } = req.body;
+    
+    console.log("요청 바디:", req.body);
+
 
     // DB에서 사용자 정보 조회
     db.query('SELECT * FROM user WHERE id = ?', [userId], async (err, results) => {
