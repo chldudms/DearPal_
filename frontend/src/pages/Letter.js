@@ -69,25 +69,37 @@ function Letter() {
        console.log( today)
        console.log('userId:', userId);
 
-        //편지 업로드 요청
-       fetch('http://localhost:5000/addLetter', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-           body: JSON.stringify({userId, title, letterContent, selectedColor })
-            })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.message === "편지 업로드 성공"){
-                        console.log("편지 업로드 성공");
-                        navigate("/About");
-                    } else {
-                        console.log(data.message);
-                    }
-                })
-                .catch(err => {
-                    console.error(err);
-                    window.alert("서버 오류 발생");
-                });
+
+        if(title.length<=20&&letterContent.length>10){ 
+             //편지 업로드 요청
+            fetch('http://localhost:5000/addLetter', {
+                     method: 'POST',
+                     headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({userId, title, letterContent, selectedColor })
+                 })
+                     .then(res => res.json())
+                     .then(data => {
+                         if (data.message === "편지 업로드 성공"){
+                             console.log("편지 업로드 성공");
+                             navigate("/About");
+                         } else {
+                             console.log(data.message);
+                         }
+                     })
+                     .catch(err => {
+                         console.error(err);
+                         window.alert("서버 오류 발생");
+                     });}
+        else if(letterContent.length==0){
+            window.alert("편지 내용을 입력하세요!")
+        }
+        else if(title.length==0){
+            window.alert("제목을 입력하세요!")
+
+        }
+         else{
+            window.alert("제목이 너무 깁니다. 20자 내외로 다시 입력해주세요.")
+         }
                 
     }
     

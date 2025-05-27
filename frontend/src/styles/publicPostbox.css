@@ -1,51 +1,59 @@
 .writeBtn {
     all: unset;
-    /* 기본 버튼 스타일 제거 */
     position: fixed;
     bottom: 50px;
     right: 40px;
+    z-index: 3;
 }
-
 
 .letterList {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    /* 한 줄에 4개 */
     gap: 60px;
     padding: 70px;
 }
 
 .letterItem {
     position: relative;
-    /* 안의 텍스트 위치 잡으려면 필요! */
-    background-color: #f5f5f5;
+    right: 70px;
     width: 350px;
     height: 200px;
     border-radius: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     transition: transform 0.2s ease;
     padding: 20px;
-    overflow: hidden;
 }
 
 .letterItem:hover {
     transform: translateY(-10px);
 }
 
+.letterSvg {
+    width: 350px;
+    height: 200px;
+    transition: all 0.3s ease-in-out;
+  }
+  .letterItem:hover .letterSvg {
+    transform: scale(1.05);
+  }
+  
+
+/*편지지 제목*/
 .letterTitle {
     position: absolute;
-    bottom: 40px;
-    left: 20px;
+    bottom: -70px;
+    left: 100px;
     font-size: 20px;
     font-weight: bold;
     color: #333;
+    z-index: 2;
 }
 
 .letterSender {
     position: absolute;
-    bottom: 10px;
-    left: 20px;
+    bottom: -90px;
+    left: 100px;
     font-size: 14px;
     color: #666;
+    z-index: 2;
 }
