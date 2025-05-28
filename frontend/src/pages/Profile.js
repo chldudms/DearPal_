@@ -41,7 +41,6 @@ function ProfileModal({ onClose }) {
 
     function logout(){
    
-        
         localStorage.removeItem("token");
         alert("로그아웃 되었습니다.");
 

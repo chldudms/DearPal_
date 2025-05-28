@@ -34,7 +34,7 @@ function Letter() {
             setSelectedColor(color)
         } else if (color === "white") {
             setColor("#ffffff");
-            setLine("#ff0000")
+            setLine("#FEDCE0")
             setSelectedColor(color)
         } else {
             setColor("#C8EAFC");

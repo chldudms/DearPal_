@@ -6,13 +6,14 @@ import "../styles/login.css"
 function Login() {
     const navigate = useNavigate();
 
-    const [userId, setUserId] = useState();
-    const [userPw, setUserPw] = useState();
+    const [userId, setUserId] = useState("");
+    const [userPw, setUserPw] = useState("");
 
    function gotoLogin(){
         console.log(userId,userPw);
 
        // 로그인 성공 후 받은 토큰을 로컬스토리지에 저장
+       if (userPw.length >= 1 && userId.length >=1){
        fetch('http://localhost:5000/login', {
            method: 'POST',
            headers: { 'Content-Type': 'application/json' },
@@ -31,9 +32,9 @@ function Login() {
                console.error(err);
                window.alert("서버 오류 발생");
            });
-
-      if(userId.length===0)
-        window.alert("아이디가 입력되지 않았습니다. ")
+   }
+       else
+       { window.alert("아이디나 비밀번호를 입력하지 않았습니다.") }
     }
 
     return (

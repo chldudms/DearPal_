@@ -7,18 +7,17 @@ import "../styles/login.css" //login페이지와 같은 css사용
 function Join() {
     const navigate = useNavigate();
     const [userName, setName] = useState();
-    const [userId, setUserId] = useState();
-    const [userPw, setUserPw] = useState();
+    const [userId, setUserId] = useState("");
+    const [userPw, setUserPw] = useState("");
     const [pwCheck, setPwCheck] = useState();
 
     function gotoJoin() {
-        if (userPw === pwCheck) {
-
+        if (userPw === pwCheck && userPw.trim().length != 0 && userId.trim().length != 0) {
             console.log(userName)
             fetch('http://localhost:5000/join', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type':'application/json'
                 },
                 body: JSON.stringify({userName,userId,userPw })
             })
@@ -40,7 +39,10 @@ function Join() {
                     console.error(err);
                     window.alert("서버 오류 발생");
                 });
-        } else {
+        } 
+        else if (userPw.trim().length === 0 || userPw.trim().length === 0)
+            {window.alert("아이디나 비밀번호를 입력하지 않았습니다.")}
+        else {
             window.alert("비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
         }
     }

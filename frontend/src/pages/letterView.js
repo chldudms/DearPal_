@@ -15,7 +15,7 @@ function LetterView(){
             setLine("#E8D500")
         } else if (color === "white") {
             setColor("#ffffff");
-            setLine("#ff0000")
+            setLine("#FEDCE0")
         } else {
             setColor("#C8EAFC");
             setLine("#85CCFF")
