@@ -29,7 +29,7 @@ router.post('/addLetter', async (req, res) => {
 // 모든 편지 조회 api
 router.get('/openLetters', (req, res) => {
     const sql = `
-        SELECT L.id, L.title, L.color, L.created_at,
+        SELECT L.id, L.title, L.content, L.color, L.created_at,
             U.username AS sender_name
         FROM Letter L
         JOIN User U ON L.sender_id = U.id
@@ -43,10 +43,33 @@ router.get('/openLetters', (req, res) => {
             return res.status(500).json({ message: '서버 오류' });
         }
 
-        return res.json({
-            message: '공개 편지 로드 성공',
-            letters: results
-        });
+        return res.json({ message: '공개 편지 로드 성공', letters: results });
+    });
+});
+
+// 편지 내용 조회 api
+router.get('/readLetter/:userName/:letterId', (req, res) => {
+    const { userName, letterId } = req.params;
+
+    const sql = `
+        SELECT L.id, L.title, L.content, L.color, L.created_at,
+               U.username AS sender_name
+        FROM Letter L
+        JOIN User U ON L.sender_id = U.id
+        WHERE L.id = ? AND U.username = ?
+    `;
+
+    db.query(sql, [letterId, userName], (err, results) => {
+        if (err) {
+            console.error("DB 에러:", err);
+            return res.status(500).json({ message: "서버 오류" });
+        }
+
+        if (results.length === 0) {
+            return res.status(404).json({ message: "편지를 찾을 수 없습니다" });
+        }
+
+        return res.json({ message: '편지 로드 성공',letter: results[0] });
     });
 });
 

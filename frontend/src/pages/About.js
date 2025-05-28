@@ -10,31 +10,19 @@ const About = () => {
     const navigate = useNavigate();
     const [userId, setUserId] = useState("");
     const [letters, setLetters] = useState([]); 
-
     const [hovered, setHovered] = useState(null);
 
-        function capitalize(str) {
-        return str.charAt(0).toUpperCase() + str.slice(1);
-        }
-
-
     const letterPage = () => {
-        navigate("/Letter");
-    };
+            navigate("/Letter");
 
-    const getLetterSVGPath = (color) => {
-        switch (color) {
-            case "pink":
-                return "/svg/pinkLetter.svg";
-            case "yellow":
-                return "/svg/yellowLetter.svg";
-            case "white":
-                return "/svg/whiteLetter.svg";
-            default:
-                return "/svg/blueLetter.svg"; // 기본 파랑 편지지
-        }
-    };
+        };
 
+    function letterView(letterId,senderName){
+        navigate("/LetterView");
+        const letterData ={letter_id:letterId,sender_name:senderName}
+        localStorage.setItem('letterData',JSON.stringify(letterData))
+
+    }
     
     useEffect(() => {
         const token = localStorage.getItem("token");
@@ -58,9 +46,6 @@ const About = () => {
                 if (data.message === "공개 편지 로드 성공") {
                     console.log("공개 편지:", data.letters);
                     setLetters(data.letters);
-
-
-
                 } else {
                     console.warn("편지 없음:", data.message);
                 }
@@ -80,8 +65,8 @@ const About = () => {
             <div className="letterList">
                 {letters.map((letter, i) => {
                     const color = letter.color || "white";
-                    const closedSrc = `/svg/${capitalize(color)}Letter.svg`;
-                    const openSrc = `/svg/${capitalize(color)}open.svg`;
+                    const closedSrc = `/svg/${color}Letter.svg`;
+                    const openSrc = `/svg/${color}open.svg`;
 
                     return (
                     <div 
@@ -89,6 +74,7 @@ const About = () => {
                         className="letterItem"
                         onMouseEnter={() => setHovered(i)}
                         onMouseLeave={() => setHovered(null)}
+                        onClick={() => letterView(letter.id,letter.sender_name)} // 클릭 시
                     >
                         <img
                         src={hovered === i ? openSrc : closedSrc}

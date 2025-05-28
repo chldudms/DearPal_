@@ -1,0 +1,46 @@
+.Title {
+    position: relative;
+    text-align: left;
+    font-size: 50px;
+    padding: 10px;
+    border: none;
+    /* 테두리 제거 */
+    outline: none;
+    /* 클릭 시 생기는 테두리 제거 */
+}
+
+hr {
+    background-color: #ff0000;
+    height: 10px;
+    padding: 0;
+    margin: 10px;
+}
+
+.Content{
+    text-align: left;
+    font-family: pretendard;
+    height: 600px;
+    padding: 15px;
+    font-size: 50px;
+    resize: none;
+    border: none;
+    /* 테두리 제거 */
+    outline: none;
+    /* 클릭 시 생기는 테두리 제거 */
+}
+
+.paper {
+    position: relative;
+    /* 자식 요소 위치 기준점 */
+    left: 350px;
+    bottom: 10px;
+    width: 1000px;
+    height: 500px;
+    padding: 100px;
+    background-color: #fff;
+    border-radius: 40px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
