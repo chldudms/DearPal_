@@ -57,7 +57,7 @@ hr {
     top: 750px;
     right: -300px;
     margin: 0 0px;
-    background-color: #FF0089;
+    background-color: #000000;
     color: white;
     border: none;
     border-radius: 50px;
@@ -66,25 +66,25 @@ hr {
 }
 
 .submitBtn:hover {
-    background-color: #e1007d;
+    background-color: #818181;
 }
 
 .DecoContainer{
-    position:absolute;
-    bottom:1050px;
+    position:fixed;
+    bottom:1020px;
 }
 
 .stickerBtn{
     position:absolute;
-    left:1000px;
+    left:1100px;
 }
 .ImgBtn{
     position:absolute;
-    left: 850px;
+    left: 1000px;
 }
 .musicBtn{
     position:absolute;
-    left: 700px;
+    left: 900px;
 }
 
 .letterColor{
@@ -93,5 +93,4 @@ hr {
     position:relative;
     bottom: 450px;
     right: 1150px;
-
 }

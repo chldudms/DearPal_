@@ -28,7 +28,7 @@ const Navibar = () => {
     return (
         <div>
             <div className="navbar">
-                <div className="logo">DEARPAL</div>
+                <img src="/img/logo.png" className="navLogo"/>
                 <div className="navContent">
                     <Link to="/About" id="h">열린 편지함</Link>
                     <Link to="/List">내 편지함</Link>

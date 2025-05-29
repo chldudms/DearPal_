@@ -8,6 +8,7 @@
     padding: 1rem 0;
     z-index: 1000;
  padding: 0.1rem ;
+    box-shadow: 0 2px 20px rgba(178, 178, 178, 0.2);
 }
 
 .navContent {
@@ -37,10 +38,9 @@
     /* 마우스 올리면 색 변경 */
 }
 
-.logo{
+.navLogo{
     position: absolute;
-    font-size: 30px;
-    font-weight: bold;
+    width: 10%;
     display:flex;
     align-items: center;
     justify-content: flex-start;

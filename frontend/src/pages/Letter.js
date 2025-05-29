@@ -70,7 +70,7 @@ function Letter() {
        console.log('userId:', userId);
 
 
-        if(title.length<=20&&letterContent.length>10){ 
+        if(title.length<=20&&letterContent.length>0){ 
              //편지 업로드 요청
             fetch('http://localhost:5000/addLetter', {
                      method: 'POST',
@@ -129,9 +129,9 @@ function Letter() {
 
                 </div>
                 <div className="DecoContainer">
-                    <button className="stickerBtn"> <img src="/img/sticker.png" /></button>
-                    <button className="ImgBtn"> <img src="/img/image.png" /></button>
-                    <button className="musicBtn"> <img src="/img/music.png" /></button>
+                     <img src="/img/sticker.png" className="stickerBtn" /> 
+                     <img src="/img/image.png" className="ImgBtn" />
+                     <img src="/img/music.png" className="musicBtn" />
                 </div>
 
                 <div className="letterColor">

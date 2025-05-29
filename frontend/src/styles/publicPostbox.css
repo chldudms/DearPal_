@@ -9,7 +9,7 @@
 .letterList {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 60px;
+    gap: 20px;
     padding: 70px;
 }
 
@@ -17,8 +17,9 @@
     position: relative;
     width: 350px;
     height: 200px;
+    bottom: 50px;
+    margin-bottom: 50px;
     border-radius: 20px;
-    right: 30px;
     cursor: pointer;
     transition: transform 0.2s ease;
     padding: 20px;

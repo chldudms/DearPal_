@@ -15,25 +15,25 @@ min-height: 100vh;
 
 }
 
-
-h1 {
-    margin-top: 20px;
-    font-size: 6rem;
-    color: #8E7DBE;
-    position: relative;
-    left: 230px;
+.logo{
+    position: fixed;
+    left: 400px;
+    top: 700px;
 }
 
 .submessage {
-    position: relative;
+    position: fixed;
     font-family: "온글잎위씨리스트";
-    margin-top: -40px;
-    /* 위로 올리기 */
-    left: 220px;
+    bottom: 200px;
+    left: 350px;
+    font-size: 50px;
 }
 
 
 .letterImg {
+    position:fixed;
+    top: 210px;
+    left: 280px;
     width: 700px;
     height: auto;
     display: block;
