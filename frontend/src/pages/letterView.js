@@ -6,19 +6,45 @@ function LetterView(){
     const [lineColor, setLine] = useState("");
     const [letter, setLetter] = useState({});
 
+    const colorOptions = [
+        {
+            id: "white",
+            backgroundColor: "#FFFFFF",
+            lineColor: "#FEDCE0"
+        },
+        {
+            id: "pink",
+            backgroundColor: "#F8C9FF",
+            lineColor: "#D4B6E8"
+        },
+        {
+            id: "purple",
+            backgroundColor: "#E3D7FF",
+            lineColor: "#B9B7E8"
+        },
+        {
+            id: "blue",
+            backgroundColor: "#C9D5FF",
+            lineColor: "#B9B7E8"
+        },
+        {
+            id: "lilac",
+            backgroundColor: "#D4B6E8",
+            lineColor: "#A890D4"
+        },
+        {
+            id: "sky",
+            backgroundColor: "#B9B7E8",
+            lineColor: "#97A1F2"
+        },
+    ];
+
+
     function setLetterColor(color){
-        if (color === "pink") {
-            setColor("#FFCCE1");
-            setLine("#F0A5AE")
-        } else if (color === "yellow") {
-            setColor("#F5EC8F");
-            setLine("#E8D500")
-        } else if (color === "white") {
-            setColor("#ffffff");
-            setLine("#FEDCE0")
-        } else {
-            setColor("#C8EAFC");
-            setLine("#85CCFF")
+        const selected = colorOptions.find(c => c.id === color);
+        if (selected) {
+            setColor(selected.backgroundColor);
+            setLine(selected.lineColor);
         }
     }
 

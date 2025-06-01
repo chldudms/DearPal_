@@ -27,14 +27,14 @@
 .letter-title {
     font-size: 50px;
     padding: 10px;
-        border: none;
+    border: none;
     /* 테두리 제거 */
     outline: none;
     /* 클릭 시 생기는 테두리 제거 */
 }
 
 hr {
-    background-color: #FEDCE0;
+    background-color: #E3D7FF;
     height: 10px;
     padding: 0;
     margin: 10px;
@@ -53,16 +53,18 @@ hr {
 }
 
 .submitBtn {
-    position: absolute;
-    top: 750px;
-    right: -300px;
-    margin: 0 0px;
-    background-color: #000000;
+    position: fixed;
+    font-size: 45px;
+    width: 300px;
+    height: 100px;
+    bottom: 60px;
+    right: 20px;
+    background-color: #D4B6E8;
     color: white;
     border: none;
     border-radius: 50px;
     cursor: pointer;
-    font-weight: bold;
+    border: none;
 }
 
 .submitBtn:hover {
@@ -70,27 +72,18 @@ hr {
 }
 
 .DecoContainer{
-    position:fixed;
-    bottom:1020px;
+    display: flex;
+    gap: 20px;
+    position: relative;
+    bottom: 450px;
+    left: 500px;
 }
 
-.stickerBtn{
-    position:absolute;
-    left:1100px;
-}
-.ImgBtn{
-    position:absolute;
-    left: 1000px;
-}
-.musicBtn{
-    position:absolute;
-    left: 900px;
-}
 
 .letterColor{
     display: flex;
     gap: 15px; 
     position:relative;
     bottom: 450px;
-    right: 1150px;
+    right: 1330px;
 }

@@ -23,7 +23,7 @@ function Login() {
            .then(data => {
                if (data.message === "로그인 성공"&&data.token) {
                    localStorage.setItem('token', data.token);  // 로컬스토리지에 저장
-                   navigate('/About');  // 페이지 이동
+                   navigate('/publicPostBox');  // 페이지 이동
                } else {
                    window.alert(data.message);
                }
@@ -38,30 +38,27 @@ function Login() {
     }
 
     return (
-        <div>,
-
+        <div>
 
             <Home />
             <div className='loginContainer'>
+                <h3 className='authText'>로그인</h3>
 
-                <h3>로그인</h3>
-
-                <form className='loginform'>
-
-
-                    <h5>id</h5>
-                    <input className='userid' onChange={(e)=>setUserId(e.target.value)} ></input> <br />
-                    <h5>password</h5>
-                    <input className='userpw' onChange={(e) => setUserPw(e.target.value)} ></input>
-                </form>
+                <div className="formGroup">
+                    <label htmlFor="userid">ID</label>
+                    <input id="userid" className="userid" onChange={(e) => setUserId(e.target.value)} />
+                </div>
+                <div className="formGroup">
+                    <label htmlFor="userpw">PASSWORD</label>
+                    <input id="userpw" className="userpw" onChange={(e) => setUserPw(e.target.value)} />
+                </div>
 
                 <button className='blueBtn' onClick={gotoLogin}>완료</button>
-               
-                <p>  <br />회원이 아니신가요?</p>
 
-                <button className='pinkBtn' onClick={()=>navigate('/join')}>회원가입</button>
-
+                <p className="askText">회원이 아니신가요?</p>
+                <button className='pinkBtn' onClick={() => navigate('/join')}>회원가입</button>
             </div>
+
 
         </div>
 

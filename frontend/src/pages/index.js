@@ -14,14 +14,14 @@ function Home() {
         <div>
             <div class="letterWrapper">
 
-                <img src="/svg/Letter.svg" className="letterImg" alt="white letter img" />
+                <img src="/svg/letter_purple.svg" className="letterImg" alt="white letter img" />
             </div>
-            <img src="/img/logo.png" className="logo" />
+            <img src="/svg/logo_purple.svg" className="logo" />
             <text className="submessage">당신의 이야기를 편지로 남겨보세요.</text>
 
             <div className="authpage">
-                <button onClick={()=>navigate('/login')} className="blueBtn tologin">로그인</button>
-                <button onClick={() => navigate('/join')} className="pinkBtn tojoin" >회원 가입</button>
+                <button onClick={()=>navigate('/login')} className="loginBtn">로그인</button>
+                <button onClick={() => navigate('/join')} className="joinBtn" >회원가입</button>
             </div>
 
         </div>

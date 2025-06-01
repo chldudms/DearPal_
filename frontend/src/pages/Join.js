@@ -29,7 +29,7 @@ function Join() {
                         
                         // 저장 이후 바로 이동
                         setTimeout(() => {
-                            navigate('/About');
+                            navigate('/publicPostBox');
                         }, 0);  
                     } else {
                         window.alert(data.message);
@@ -54,22 +54,30 @@ function Join() {
             <Home />
             <div className='JoinContainer'>
 
-                <h3>회원가입</h3>
+                <h3 className='authText'>회원가입</h3>
 
                 <form className='Joginform'>
-                    <h5>nickname</h5>
-                    <input className='userid' value={userName} onChange={(e) => setName(e.target.value)} /> <br />
-                    <h5>id</h5>
-                    <input className='userid' value={userId} onChange={(e) => setUserId(e.target.value)} /> <br />
-                    <h5>password</h5>
-                    <input className='userpw' type="password" value={userPw} onChange={(e) => setUserPw(e.target.value)} />
-                    <h5>password check</h5>
-                    <input className='userpw' type="password" value={pwCheck} onChange={(e) => setPwCheck(e.target.value)} />
+                    <div className="formGroup">
+                        <label>NICKNAME</label>
+                        <input className='userid' onChange={(e) => setName(e.target.value)} />
+                    </div>
+                    <div className="formGroup">
+                        <label>ID</label>
+                        <input className='userid' onChange={(e) => setUserId(e.target.value)} />
+                    </div>
+                    <div className="formGroup">
+                        <label>PASSWORD</label>
+                        <input className='userid' onChange={(e) => setUserPw(e.target.value)} />
+                    </div>
+                    <div className="formGroup">
+                        <label>PASSWORD CHECK</label>
+                        <input className='userid' onChange={(e) => setPwCheck(e.target.value)} />
+                    </div>
                 </form>
 
                 <button className='blueBtn' onClick={gotoJoin}>완료</button>
 
-                <p>  <br />회원이신가요?</p>
+                <p className="askText">회원이신가요?</p>
 
                 <button className='pinkBtn' onClick={()=>navigate('/Login')}>로그인</button>
 

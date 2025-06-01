@@ -9,68 +9,89 @@ body ,html{
     position: fixed;
     top: 0;
     right: 0;
-    width: 600px;
+    width: 800px;
     height: 100vh;
     padding: 50px;
     background-color: #ffffff;
     z-index: 1000;
 }
 
-/* 로그인 폼 내부 정렬 */
-.Joinform,
-.loginform {
-    display: flex;
-    flex-direction: column;
-    margin-top: 50px;
-    gap: 5px;
-}
-
-h3 {
-    font-size: 25px;
+.authText {
+    font-weight: 100;
+    font-size: 45px;
     margin-top: 5px;
 }
 
-h5 {
+/* 라벨 위에 배치+아래 요소 정렬 */
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 130px;
+    margin-bottom: 0px;
+    
+}
+
+.formGroup label {
+    font-weight: 100;
     font-size: 20px;
+    margin-top: 10px;
     margin-left: 10px;
-    text-align: left;
 }
 
 .userid,
 .userpw {
+    width: 550px;
+    height: 100px;
     background-color: #ffffff;
     border: 2px solid #bdbdbd;
-    padding: 15px 20px;
     border-radius: 50px;
-    font-size:30px;
-    width: 100%;
+    font-size: 30px;
+    padding: 0 30px;
     box-sizing: border-box;
+    
 }
 
-.blueBtn {
-    padding: 20px 0;
+.blueBtn{
+    width: 550px;
+    height: 100px;
+    font-size: 35px;
     border-radius: 50px;
-    font-size: 16px;
-    background-color: #000000;
+    background-color: #C9D5FF;
     color: white;
     border: none;
     cursor: pointer;
-    width: 100%;
-    margin-left: auto;
-    margin-top: 50px;
+    margin-left: 50px;
+    margin-top: 30px;
 }
 
 
 .pinkBtn {
-    padding: 20px 0;
+    width: 550px;
+    height: 100px;
+    font-size: 35px;
     border-radius: 50px;
-    font-size: 16px;
-    background-color: #000000;
+    background-color: #F8C9FF;
     color: white;
     border: none;
     cursor: pointer;
-    width: 100%;
-    margin-left: auto;
+    margin-left: 50px;
+    margin-top: 30px;
+}
+
+.blueBtn:hover {
+    background-color: #B9B7E8;
+}
+
+.pinkBtn:hover {
+    background-color: #D4B6E8;
+}
+/* 문구 */
+.askText {
+    margin-left: 20px;
+    margin-top: 30px;
+    margin-bottom: 0px;
+    font-size: 20px;
 }
 
 .tologin{

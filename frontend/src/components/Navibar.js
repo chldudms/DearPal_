@@ -28,10 +28,10 @@ const Navibar = () => {
     return (
         <div>
             <div className="navbar">
-                <img src="/img/logo.png" className="navLogo"/>
+                <img src="/svg/logo_purple.svg" className="navLogo"/>
                 <div className="navContent">
-                    <Link to="/About" id="h">열린 편지함</Link>
-                    <Link to="/List">내 편지함</Link>
+                    <Link to="/publicPostBox" id="h">열린 편지함</Link>
+                    <Link to="/mypostBox">내 편지함</Link>
                     <img
                         src={profileImg}
                         alt="유저 프로필"

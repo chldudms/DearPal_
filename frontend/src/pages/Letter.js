@@ -9,37 +9,63 @@ function Letter() {
 
     const [title, setTitle] = useState("");
     const [letterContent, setContent] = useState("");
-    const [letterColor, setColor] = useState(""); //편지지 컬러
-    const [lineColor, setLine] = useState("");
     const [selectedColor, setSelectedColor] = useState("white");
+    const [letterColor, setColor] = useState("#FFFFFF");
+    const [lineColor, setLine] = useState("#E3D7FF");
     const [userId, setUserId] = useState("");
 
 
     const colorOptions = [
-        { id: "blue", img: "/img/circle_blue.png", selectedImg: "/img/checkblue.png" },
-        { id: "pink", img: "/img/circle_pink.png", selectedImg: "/img/checkpink.png" },
-        { id: "yellow", img: "/img/circle_yellow.png", selectedImg: "/img/checkyellow.png" },
-        { id: "white", img: "/img/circle_white.png", selectedImg: "/img/checkwhite.png" },
+        {
+            id: "white",
+            backgroundColor: "#FFFFFF",
+            lineColor: "#E3D7FF",
+            img: "/svg/circle_white.svg",
+            selectedImg: "/svg/checkwhite.svg"
+        },
+        {
+            id: "pink",
+            backgroundColor: "#F8C9FF",
+            lineColor: "#D4B6E8",
+            img: "/svg/circle_pink.svg",
+            selectedImg: "/svg/checkpink.svg"
+        },
+        {
+            id: "purple",
+            backgroundColor: "#E3D7FF",
+            lineColor: "#B9B7E8",
+            img: "/svg/circle_purple.svg",
+            selectedImg: "/svg/checkpurple.svg"
+        },
+        {
+            id: "blue",
+            backgroundColor: "#C9D5FF",
+            lineColor: "#B9B7E8",
+            img: "/svg/circle_blue.svg",
+            selectedImg: "/svg/checkblue.svg"
+        },
+        {
+            id: "lilac",
+            backgroundColor: "#D4B6E8",
+            lineColor: "#A890D4",
+            img: "/svg/circle_lilac.svg",
+            selectedImg: "/svg/checklilac.svg"
+        },
+        {
+            id: "sky",
+            backgroundColor: "#B9B7E8",
+            lineColor: "#97A1F2",
+            img: "/svg/circle_sky.svg",
+            selectedImg: "/svg/checksky.svg"
+        },
     ];
 
-    function changeColor(color) {
-
-        if (color === "pink") {
-            setColor("#FFCCE1");
-            setLine("#F0A5AE")
-            setSelectedColor(color)
-        } else if (color === "yellow") {
-            setColor("#F5EC8F");
-            setLine("#E8D500")
-            setSelectedColor(color)
-        } else if (color === "white") {
-            setColor("#ffffff");
-            setLine("#FEDCE0")
-            setSelectedColor(color)
-        } else {
-            setColor("#C8EAFC");
-            setLine("#85CCFF")
-            setSelectedColor(color)
+    function changeColor(colorId) {
+        const selected = colorOptions.find(c => c.id === colorId);
+        if (selected) {
+            setColor(selected.backgroundColor);
+            setLine(selected.lineColor);
+            setSelectedColor(colorId);
         }
     }
 
@@ -81,7 +107,7 @@ function Letter() {
                      .then(data => {
                          if (data.message === "편지 업로드 성공"){
                              console.log("편지 업로드 성공");
-                             navigate("/About");
+                             navigate("/publicPostBox");
                          } else {
                              console.log(data.message);
                          }
@@ -124,12 +150,12 @@ function Letter() {
                     />
 
                     <button className="submitBtn" onClick={addLetter}>
-                        편지 보내기
+                        완료
                     </button>
 
                 </div>
                 <div className="DecoContainer">
-                     <img src="/img/sticker.png" className="stickerBtn" /> 
+                     <img src="/img/sticker.png" className="stickerBtn" onClick={()=>console.log("스티커")}/> 
                      <img src="/img/image.png" className="ImgBtn" />
                      <img src="/img/music.png" className="musicBtn" />
                 </div>
