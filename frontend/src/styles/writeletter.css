@@ -72,6 +72,7 @@ hr {
 }
 
 .DecoContainer{
+    position: fixed;
     display: flex;
     gap: 20px;
     position: relative;
@@ -81,9 +82,56 @@ hr {
 
 
 .letterColor{
+    position: fixed;
     display: flex;
     gap: 15px; 
     position:relative;
     bottom: 450px;
     right: 1330px;
 }
+
+
+.stickerBoard {
+    position: fixed;
+    top: 150px;
+    right: 30px;
+    padding: 50px 80px;
+    background: white;
+    z-index: 10;
+    border-radius: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.sticker-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.stickerItem {
+    width: 95px;
+    height: 95px;
+    object-fit: contain;
+    cursor: pointer;
+}
+
+.letterSticker {
+    position: fixed;
+    
+}
+
+.sticker-1 {
+    bottom: 250px;
+    left: 420px;
+}
+
+.sticker-2 {
+    bottom: 250px;
+    right: 500px;
+}
+
+.sticker-3 {
+    bottom: 300px;
+    right: 380px;
+}
+

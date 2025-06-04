@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import '../styles/writeletter.css'
 import { useNavigate } from 'react-router-dom';
 import { jwtDecode } from "jwt-decode";
+import { colorOptions, stickerImages} from '../components/colorOptions.js';
 
 
 function Letter() {
@@ -13,52 +14,35 @@ function Letter() {
     const [letterColor, setColor] = useState("#FFFFFF");
     const [lineColor, setLine] = useState("#E3D7FF");
     const [userId, setUserId] = useState("");
+    const [sticker,setSticker] = useState([]);
+    const [modalDisplay, setModalDisplay] = useState("none");
 
+    const openModal = () => setModalDisplay("block");
+    const closeModal = () => setModalDisplay("none");
 
-    const colorOptions = [
-        {
-            id: "white",
-            backgroundColor: "#FFFFFF",
-            lineColor: "#E3D7FF",
-            img: "/svg/circle_white.svg",
-            selectedImg: "/svg/checkwhite.svg"
-        },
-        {
-            id: "pink",
-            backgroundColor: "#F8C9FF",
-            lineColor: "#D4B6E8",
-            img: "/svg/circle_pink.svg",
-            selectedImg: "/svg/checkpink.svg"
-        },
-        {
-            id: "purple",
-            backgroundColor: "#E3D7FF",
-            lineColor: "#B9B7E8",
-            img: "/svg/circle_purple.svg",
-            selectedImg: "/svg/checkpurple.svg"
-        },
-        {
-            id: "blue",
-            backgroundColor: "#C9D5FF",
-            lineColor: "#B9B7E8",
-            img: "/svg/circle_blue.svg",
-            selectedImg: "/svg/checkblue.svg"
-        },
-        {
-            id: "lilac",
-            backgroundColor: "#D4B6E8",
-            lineColor: "#A890D4",
-            img: "/svg/circle_lilac.svg",
-            selectedImg: "/svg/checklilac.svg"
-        },
-        {
-            id: "sky",
-            backgroundColor: "#B9B7E8",
-            lineColor: "#97A1F2",
-            img: "/svg/circle_sky.svg",
-            selectedImg: "/svg/checksky.svg"
-        },
-    ];
+    
+    function selectSticker(stickerImg) {
+        setSticker(sticker => {
+            const emptyIndex = sticker.findIndex(item => item === "");
+            if (emptyIndex !== -1) {
+                const newArr = [...sticker];
+                newArr[emptyIndex] = stickerImg;
+                return newArr;
+            }
+
+            if (sticker.length < 3) {
+                return [...sticker, stickerImg];
+            }
+
+            return sticker;
+        });
+    }
+
+    const removeSticker = (i) => {
+        const newStickers = [...sticker];
+        newStickers[i] = "";
+        setSticker(newStickers);
+    };
 
     function changeColor(colorId) {
         const selected = colorOptions.find(c => c.id === colorId);
@@ -154,10 +138,30 @@ function Letter() {
                     </button>
 
                 </div>
+
                 <div className="DecoContainer">
-                     <img src="/img/sticker.png" className="stickerBtn" onClick={()=>console.log("스티커")}/> 
-                     <img src="/img/image.png" className="ImgBtn" />
-                     <img src="/img/music.png" className="musicBtn" />
+                    <img src="/img/sticker.png" className="stickerBtn" onClick={()=>modalDisplay=="block"?closeModal():openModal()} />
+                    
+                    <div className="stickerBoard" style={{display:modalDisplay}} >
+                        <div className="sticker-grid">
+                            {stickerImages.map((src, i) => (
+                                <img key={i} src={src} className="stickerItem" onClick={()=>{selectSticker(src)}}/>
+                            ))}
+                        </div>
+                    </div>
+
+                    <img src="/img/image.png" className="stickerBtn"  />
+                    <img src="/img/music.png" className="stickerBtn"  />
+
+
+                </div>
+
+                <div className="stickerPostition">
+                    {sticker.map((src, i) => (
+                     <img key={i} src={src} 
+                     className={`letterSticker sticker-${i + 1}`}
+                     onClick={() => {removeSticker(i) }}/> 
+                    ))}
                 </div>
 
                 <div className="letterColor">
@@ -173,7 +177,7 @@ function Letter() {
                 </div>
 
             </div>
-        </div>
+         </div>
     );
 }
 

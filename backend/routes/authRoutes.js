@@ -29,7 +29,7 @@ router.post('/join', async (req, res) => {
                 console.error(err);
             }
 
-            // JWT 토큰 생성
+            // JWT토큰 생성
             const token = jwt.sign(
                 { userId: userId, userName: userName, profileSeed: seed },
                 'your_secret_key',

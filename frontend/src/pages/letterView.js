@@ -1,44 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import '../styles/letterView.css'
+import '../styles/letterView.css';
+import { colorOptions } from '../components/colorOptions.js';
 
 function LetterView(){
     const [letterColor, setColor] = useState(""); //편지지 컬러
     const [lineColor, setLine] = useState("");
     const [letter, setLetter] = useState({});
-
-    const colorOptions = [
-        {
-            id: "white",
-            backgroundColor: "#FFFFFF",
-            lineColor: "#FEDCE0"
-        },
-        {
-            id: "pink",
-            backgroundColor: "#F8C9FF",
-            lineColor: "#D4B6E8"
-        },
-        {
-            id: "purple",
-            backgroundColor: "#E3D7FF",
-            lineColor: "#B9B7E8"
-        },
-        {
-            id: "blue",
-            backgroundColor: "#C9D5FF",
-            lineColor: "#B9B7E8"
-        },
-        {
-            id: "lilac",
-            backgroundColor: "#D4B6E8",
-            lineColor: "#A890D4"
-        },
-        {
-            id: "sky",
-            backgroundColor: "#B9B7E8",
-            lineColor: "#97A1F2"
-        },
-    ];
-
 
     function setLetterColor(color){
         const selected = colorOptions.find(c => c.id === color);
