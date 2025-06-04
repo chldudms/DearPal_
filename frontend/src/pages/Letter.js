@@ -15,10 +15,29 @@ function Letter() {
     const [lineColor, setLine] = useState("#E3D7FF");
     const [userId, setUserId] = useState("");
     const [sticker,setSticker] = useState([]);
-    const [modalDisplay, setModalDisplay] = useState("none");
+    const [modals, setModals] = useState({ sticker: false,image: false, music: false});
 
-    const openModal = () => setModalDisplay("block");
-    const closeModal = () => setModalDisplay("none");
+    const toggleModal = (key) => {
+        setModals((prev) => {
+            const allFalse = Object.keys(prev).reduce((acc, k) => {
+                acc[k] = false;
+                return acc;
+            }, {});
+            return {
+                ...allFalse,
+                [key]: !prev[key]  //현재 눌린 모달만
+            };
+        });
+    };
+
+
+    const closeAllModals = () => {
+        setModals({
+            sticker: false,
+            image: false,
+            music: false
+        });
+    };
 
     
     function selectSticker(stickerImg) {
@@ -140,21 +159,52 @@ function Letter() {
                 </div>
 
                 <div className="DecoContainer">
-                    <img src="/img/sticker.png" className="stickerBtn" onClick={()=>modalDisplay=="block"?closeModal():openModal()} />
-                    
-                    <div className="stickerBoard" style={{display:modalDisplay}} >
-                        <div className="sticker-grid">
-                            {stickerImages.map((src, i) => (
-                                <img key={i} src={src} className="stickerItem" onClick={()=>{selectSticker(src)}}/>
-                            ))}
+                    <img
+                        src="/img/sticker.png"
+                        className="stickerBtn"
+                        onClick={() => toggleModal("sticker")}
+                    />
+
+                    {modals.sticker && (
+                        <div className="stickerBoard">
+                            <div className="sticker-grid">
+                                {stickerImages.map((src, i) => (
+                                    <img
+                                        key={i}
+                                        src={src}
+                                        className="stickerItem"
+                                        onClick={() => selectSticker(src)}
+                                    />
+                                ))}
+                            </div>
                         </div>
-                    </div>
+                    )}
 
-                    <img src="/img/image.png" className="stickerBtn"  />
-                    <img src="/img/music.png" className="stickerBtn"  />
+                    <img
+                        src="/img/image.png"
+                        className="stickerBtn"
+                        onClick={() => toggleModal("image")}
+                    />
+                    {modals.image && (
+                        <div className="imageModal">
+                            <img src="/svg/camera.svg" className="camera" />
+                            <img src="/svg/upload.svg" className="upload" />
+                        </div>
+                    )}
 
+                    <img
+                        src="/img/music.png"
+                        className="stickerBtn"
+                        onClick={() => toggleModal("music")}
+                    />
+                    {modals.music && (
+                        <div className="musicModal">
+                        </div>
+                    )}
+                </div> 
 
-                </div>
+                
+
 
                 <div className="stickerPostition">
                     {sticker.map((src, i) => (
@@ -162,7 +212,7 @@ function Letter() {
                      className={`letterSticker sticker-${i + 1}`}
                      onClick={() => {removeSticker(i) }}/> 
                     ))}
-                </div>
+                </div> 
 
                 <div className="letterColor">
                     {colorOptions.map((color) => (
@@ -174,6 +224,8 @@ function Letter() {
                             style={{ cursor: "pointer", width: "50px" }}
                         />
                     ))}
+
+
                 </div>
 
             </div>
