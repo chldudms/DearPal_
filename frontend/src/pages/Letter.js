@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import '../styles/writeletter.css'
 import { useNavigate } from 'react-router-dom';
 import { jwtDecode } from "jwt-decode";
@@ -15,17 +15,41 @@ function Letter() {
     const [lineColor, setLine] = useState("#E3D7FF");
     const [userId, setUserId] = useState("");
     const [sticker,setSticker] = useState([]);
-    const [modals, setModals] = useState({ sticker: false,image: false, music: false});
+    const [modals, setModals] = useState({ sticker: false, image: false, music: false, deleteModal:false});
+    const [uploadedImage, setUploadedImage] = useState("");
+    const [isUploaded, setIsUploaded] = useState(false);
+    const [mode, setMode] = useState("letter"); // letter | image
+
+    const changeMode = () => {
+        setMode(prev => (prev === "letter" ? "image" : "letter"));
+    };
+
+    const delImgModal= ()=>{
+
+    }
+
+    const fileChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setUploadedImage(reader.result);
+                setIsUploaded(true);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
 
     const toggleModal = (key) => {
         setModals((prev) => {
-            const allFalse = Object.keys(prev).reduce((acc, k) => {
-                acc[k] = false;
+            const allFalse = Object.keys(prev).reduce((acc, k) => { //오브젝트 키만 뽑아서 순회
+                acc[k] = false; // 모달 모두 닫은 후 
                 return acc;
             }, {});
             return {
                 ...allFalse,
-                [key]: !prev[key]  //현재 눌린 모달만
+                [key]: !prev[key]  //현재 눌린 거만 
             };
         });
     };
@@ -72,6 +96,16 @@ function Letter() {
         }
     }
 
+
+    const ref = useRef(null);
+
+    const ClickUploadButton = () => {
+        if (!ref.current) return;
+        ref.current.click();
+        setMode("Image");
+    };
+
+
     useEffect(() => {
         const token = localStorage.getItem("token");
         console.log("토큰값:", token); // 토큰 제대로 저장됐는지 확인
@@ -79,7 +113,6 @@ function Letter() {
         if (token) {
             try {
                 const decoded = jwtDecode(token);
-                console.log("디코딩 결과:", decoded);
                 console.log("유저 아이디:", decoded.userId); 
                 
                 setUserId(decoded.userId);
@@ -144,13 +177,22 @@ function Letter() {
                         onChange={(e) => setTitle(e.target.value)} />
                     <hr style={{ background: lineColor }} />
 
-                    <textarea
-                        style={{ background: letterColor }}
-                        value={letterContent}
-                        placeholder="여기에 편지를 작성하세요..."
-                        className="letter-content"
-                        onChange={(e) => setContent(e.target.value)}
-                    />
+                {mode === "letter" ? (
+                        <textarea
+                            style={{ background: letterColor }}
+                            value={letterContent}
+                            placeholder="여기에 편지를 작성하세요..."
+                            className="letter-content"
+                            onChange={(e) => setContent(e.target.value)}
+                        />
+                    ) : (
+                         isUploaded && uploadedImage && (
+                          <div>
+                                     <img src={uploadedImage} className="ImagePreview" onClick={()=>toggleModal("deleteImgModal")} />
+                          </div>
+                        )
+                    )}
+
 
                     <button className="submitBtn" onClick={addLetter}>
                         완료
@@ -180,39 +222,35 @@ function Letter() {
                         </div>
                     )}
 
-                    <img
-                        src="/img/image.png"
-                        className="stickerBtn"
-                        onClick={() => toggleModal("image")}
-                    />
-                    {modals.image && (
-                        <div className="imageModal">
-                            <img src="/svg/camera.svg" className="camera" />
-                            <img src="/svg/upload.svg" className="upload" />
-                        </div>
+                 
+                   { modals.image && (
+                    <div className="imageModal">
+                        <img src="/svg/camera.svg" className="cameraBtn" />
+
+                        <img src="/svg/upload.svg" className="uploadBtn" onClick={ClickUploadButton} />
+                        <input type="file" hidden ref={ref} onChange={fileChange} />
+
+                    </div>
                     )}
 
-                    <img
-                        src="/img/music.png"
-                        className="stickerBtn"
-                        onClick={() => toggleModal("music")}
-                    />
+                    <img src="/img/image.png" className="ImgBtn" onClick={() => toggleModal("image")} />
+                                     
+                    <img src="/img/music.png" className="MusicBtn"  onClick={() => toggleModal("music")} />
                     {modals.music && (
                         <div className="musicModal">
                         </div>
                     )}
                 </div> 
-
                 
-
-
-                <div className="stickerPostition">
+         
+               <div className="stickerPostition">
                     {sticker.map((src, i) => (
                      <img key={i} src={src} 
                      className={`letterSticker sticker-${i + 1}`}
                      onClick={() => {removeSticker(i) }}/> 
                     ))}
-                </div> 
+                </div>
+
 
                 <div className="letterColor">
                     {colorOptions.map((color) => (
@@ -224,10 +262,22 @@ function Letter() {
                             style={{ cursor: "pointer", width: "50px" }}
                         />
                     ))}
-
-
                 </div>
 
+                <div className="tooltip-container">
+                    <img
+                        src="/svg/rightarrow.svg" className="arrowBtn"  onClick={changeMode} alt="전환 버튼"  />
+                    <span className="tooltipText">
+                        {mode === "letter" ? "사진 전환" : "편지 전환"}
+                    </span>
+                </div>
+
+            </div>
+
+            <div className="Modals">
+                {/* <div className="deleteImgModal"> 
+                <p>사진을 삭제하겠습니까?</p>
+                </div>    */}
             </div>
          </div>
     );
