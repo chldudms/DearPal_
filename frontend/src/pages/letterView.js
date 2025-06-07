@@ -1,13 +1,21 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/letterView.css';
 import { colorOptions } from '../components/options.js';
 
-function LetterView(){
-    const [letterColor, setColor] = useState(""); //편지지 컬러
+function LetterView() {
+    const [letterColor, setColor] = useState("");
     const [lineColor, setLine] = useState("");
-    const [letter, setLetter] = useState({});
+    const [letter, setLetter] = useState({ // 편지 오브젝트
+        title: '', 
+        content: '',
+        stickers: [],
+        image_url: null
+    });
+    const [mode, setMode] = useState("letter"); // letter | image
 
-    function setLetterColor(color){
+
+    // 편지지 컬러 설정 함수
+    function setLetterColor(color) {
         const selected = colorOptions.find(c => c.id === color);
         if (selected) {
             setColor(selected.backgroundColor);
@@ -15,44 +23,82 @@ function LetterView(){
         }
     }
 
-     useEffect(()=>{
-        const letterData = JSON.parse(localStorage.getItem('letterData')); //스토리지에서 편지 정보 가져오기
-        
-        console.log(letterData.sender_name)
-         //sender_name과 letter_id를 통해 편지 내용 조회 
+    const changeMode = () => {
+        setMode(prev => (prev === "letter" ? "image" : "letter"));
+    };
+
+    useEffect(() => {
+        const letterData = JSON.parse(localStorage.getItem('letterData'));
+        if (!letterData) {
+            alert("편지 정보가 없습니다!");
+            return;
+        }
+
         fetch(`http://localhost:5000/readLetter/${letterData.sender_name}/${letterData.letter_id}`, {
-             method: "GET",
-             headers: { 'Content-Type': 'application/json' }
-         })
-             .then(res => {
-                 if (!res.ok) throw new Error("편지 조회 실패");
-                 return res.json();
-             })
-             .then(data => {
-                 setLetter(data.letter); 
-                 setLetterColor(data.letter.color); 
-                 console.log(data.letter)
-                 
-             })
-             .catch(error => {
-                 console.error("에러:", error.message);
-                 alert("편지 조회에 실패했어요");
-             });
-     }, [])
+            method: "GET",
+            headers: { 'Content-Type': 'application/json' }
+        })
+            .then(res => {
+                if (!res.ok) throw new Error("편지 조회 실패");
+                return res.json();
+            })
+            .then(data => {
+                setLetter(data.letter);
+                setLetterColor(data.letter.color);
 
-     
-        
-    return(
-    <div>
-        <div className="paper" style={{ background: letterColor }}>  
-              
-            <text className="Title">{letter.title}</text>
-            <hr style={{ background: lineColor }} />
-            <text className="Content">{letter.content} </text>
+                console.log("스티커 데이터:", data.letter.stickers);
+          
+            })
+            .catch(error => {
+                console.error( error.message);
+                alert("편지 조회 실패");
+            });
+
             
-        </div>
-    </div>
-    );
+    }, []);
 
+    return (
+        <div className="letter-container">
+            <div className="letter-paper" style={{ background: letterColor }}>
+
+                <text className="letter-title ">{letter.title}</text>
+                <hr style={{ background: lineColor }} />
+
+                {mode === "letter" ? (
+                <text className="letter-content">{letter.content}</text>):
+               (letter.image_url && (
+          
+                        <img
+                            src={`http://localhost:5000${letter.image_url}`}
+                            alt="편지 이미지"
+                            className="ImagePreview"
+                        />
+                    )
+                )}
+
+
+            </div>
+                {letter.stickers && letter.stickers.length > 0 && (
+                <div className="stickerPostition">
+                     { letter.stickers.map((path, i) => (
+                         <img key={i} src={`${process.env.PUBLIC_URL}${path}`} 
+                        className={`letterSticker sticker-${i + 1}`}
+                             alt=""
+                             style={{ display: letter.image_url ? 'block' : 'none' }}                      />
+                ))}   
+                </div>)}
+
+            <div className="tooltip-container">
+                <img
+                    src="/svg/rightarrow.svg" className="arrowBtn" onClick={changeMode} alt="전환 버튼" />
+                <span className="tooltipText">
+                    {mode === "letter" ? "사진 전환" : "편지 전환"}
+                </span>
+            </div>
+
+
+        </div>
+    );
 }
+
 export default LetterView;

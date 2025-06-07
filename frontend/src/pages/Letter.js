@@ -19,6 +19,8 @@ function Letter() {
     const [uploadedImage, setUploadedImage] = useState("");
     const [isUploaded, setIsUploaded] = useState(false);
     const [mode, setMode] = useState("letter"); // letter | image
+    const [rawFile, setRawFile] = useState(null); // 실제 파일
+
 
     const changeMode = () => {
         setMode(prev => (prev === "letter" ? "image" : "letter"));
@@ -31,14 +33,13 @@ function Letter() {
     const fileChange = (e) => {
         const file = e.target.files[0];
         if (file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setUploadedImage(reader.result);
-                setIsUploaded(true);
-            };
-            reader.readAsDataURL(file);
+            setUploadedImage(URL.createObjectURL(file)); // 프리뷰 
+            setRawFile(file); // 나중에 서버로 전송
+            setIsUploaded(true);
+            console.log(uploadedImage)
         }
     };
+
 
 
     const toggleModal = (key) => {
@@ -66,7 +67,7 @@ function Letter() {
     
     function selectSticker(stickerImg) {
         setSticker(sticker => {
-            const emptyIndex = sticker.findIndex(item => item === "");
+            const emptyIndex = sticker.findIndex(item => item === ""); //빈자리 찾아서 삽입
             if (emptyIndex !== -1) {
                 const newArr = [...sticker];
                 newArr[emptyIndex] = stickerImg;
@@ -87,6 +88,7 @@ function Letter() {
         setSticker(newStickers);
     };
 
+
     function changeColor(colorId) {
         const selected = colorOptions.find(c => c.id === colorId);
         if (selected) {
@@ -95,7 +97,6 @@ function Letter() {
             setSelectedColor(colorId);
         }
     }
-
 
     const ref = useRef(null);
 
@@ -126,18 +127,20 @@ function Letter() {
 
 
    function addLetter(){
-       var today = new Date();
-        console.log(title, letterContent)
-       console.log( today)
-       console.log('userId:', userId);
+       const formData = new FormData();
+       formData.append('userId', userId);
+       formData.append('title', title);
+       formData.append('letterContent', letterContent);
+       formData.append('selectedColor', selectedColor);
+       formData.append('sticker', JSON.stringify(sticker));
+       formData.append('image', rawFile);
 
 
-        if(title.length<=20&&letterContent.length>0){ 
+        if(title.length<=30&&letterContent.length>0){ 
              //편지 업로드 요청
             fetch('http://localhost:5000/addLetter', {
                      method: 'POST',
-                     headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({userId, title, letterContent, selectedColor })
+                     body: formData
                  })
                      .then(res => res.json())
                      .then(data => {
@@ -160,7 +163,7 @@ function Letter() {
 
         }
          else{
-            window.alert("제목이 너무 깁니다. 20자 내외로 다시 입력해주세요.")
+            window.alert("제목이 너무 깁니다. 30자 내외로 다시 입력해주세요.")
          }
                 
     }
@@ -221,13 +224,13 @@ function Letter() {
                             </div>
                         </div>
                     )}
+          
 
                  
                    { modals.image && (
                     <div className="imageModal">
-
                         <img src="/svg/upload.svg" className="uploadBtn" onClick={ClickUploadButton} />
-                        <input type="file" hidden ref={ref} onChange={fileChange} />
+                            <input type="file" hidden ref={ref} onChange={fileChange} />
 
                     </div>
                     )}
