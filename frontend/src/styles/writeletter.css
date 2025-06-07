@@ -107,30 +107,32 @@ hr {
 }
 
 .stickerItem {
-    width: 95px;
-    height: 95px;
+    width: 80px;
+    height: 80px;
     object-fit: contain;
     cursor: pointer;
 }
 
 .letterSticker {
     position: fixed;
+     width: 100px;
+     height: 100px;
     
 }
 
 .sticker-1 {
     bottom: 250px;
-    left: 410px;
+    left: 450px;
 }
 
 .sticker-2 {
-    bottom: 250px;
-    right: 500px;
+    bottom: 230px;
+    right: 550px;
 }
 
 .sticker-3 {
     bottom: 300px;
-    right: 380px;
+    right: 430px;
 }
 
 
@@ -158,8 +160,6 @@ hr {
         border-radius: 30px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
-
-
 
 .ImagePreview {
     position: fixed;
@@ -218,4 +218,20 @@ hr {
 .tooltip-container:hover .tooltipText {
     visibility: visible;
     opacity: 1;
+}
+
+.stickerScroll{
+    position: absolute;
+    top: 150px;
+}
+
+.beforeScroll{
+    position: absolute;
+        top: 100px;
+        left: 10px;
+}
+.stickerScroll {
+  position: absolute;
+  top: 100px;
+  right: 10px;
 }

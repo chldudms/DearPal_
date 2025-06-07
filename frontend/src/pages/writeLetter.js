@@ -3,7 +3,11 @@ import '../styles/writeletter.css'
 import { useNavigate } from 'react-router-dom';
 import { jwtDecode } from "jwt-decode";
 import { colorOptions, stickerImages} from '../components/options.js';
-
+import StickerBoard from "../components/stickerBoard.js";
+import FileInput from "../components/FileInput.js";
+import StickerPostition from "../components/stickerPosition.js";
+import LetterPaper from "../components/LetterPaper.js";
+import ToolTip from "../components/ToolTip.js";
 
 function Letter() {
     const navigate = useNavigate();
@@ -21,27 +25,6 @@ function Letter() {
     const [mode, setMode] = useState("letter"); // letter | image
     const [rawFile, setRawFile] = useState(null); // 실제 파일
 
-
-    const changeMode = () => {
-        setMode(prev => (prev === "letter" ? "image" : "letter"));
-    };
-
-    const delImgModal= ()=>{
-
-    }
-
-    const fileChange = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            setUploadedImage(URL.createObjectURL(file)); // 프리뷰 
-            setRawFile(file); // 나중에 서버로 전송
-            setIsUploaded(true);
-            console.log(uploadedImage)
-        }
-    };
-
-
-
     const toggleModal = (key) => {
         setModals((prev) => {
             const allFalse = Object.keys(prev).reduce((acc, k) => { //오브젝트 키만 뽑아서 순회
@@ -54,7 +37,6 @@ function Letter() {
             };
         });
     };
-
 
     const closeAllModals = () => {
         setModals({
@@ -82,12 +64,6 @@ function Letter() {
         });
     }
 
-    const removeSticker = (i) => {
-        const newStickers = [...sticker];
-        newStickers[i] = "";
-        setSticker(newStickers);
-    };
-
 
     function changeColor(colorId) {
         const selected = colorOptions.find(c => c.id === colorId);
@@ -99,12 +75,6 @@ function Letter() {
     }
 
     const ref = useRef(null);
-
-    const ClickUploadButton = () => {
-        if (!ref.current) return;
-        ref.current.click();
-        setMode("Image");
-    };
 
 
     useEffect(() => {
@@ -172,88 +142,55 @@ function Letter() {
     return (
         <div >
             <div className="letter-container">
-                <div className="letter-paper" style={{ background: letterColor }}>
-                    <input style={{ background: letterColor }}
-                        value={title}
-                        placeholder="제목을 입력하세요"
-                        className="letter-title"
-                        onChange={(e) => setTitle(e.target.value)} />
-                    <hr style={{ background: lineColor }} />
-
-                {mode === "letter" ? (
-                        <textarea
-                            style={{ background: letterColor }}
-                            value={letterContent}
-                            placeholder="여기에 편지를 작성하세요..."
-                            className="letter-content"
-                            onChange={(e) => setContent(e.target.value)}
-                        />
-                    ) : (
-                         isUploaded && uploadedImage && (
-                          <div>
-                           <img src={uploadedImage} className="ImagePreview" onClick={()=>toggleModal("deleteImgModal")} />
-                          </div>
-                        )
-                    )}
+                <LetterPaper
+                    page={'write'}
+                    mode={mode}
+                    isUploaded={isUploaded}
+                    uploadedImage={uploadedImage}
+                    letterColor={letterColor}
+                    lineColor={lineColor}
+                    title={title}
+                    setTitle={setTitle}
+                    letterContent={letterContent}
+                    setLetterContent={setContent}
+                />
 
 
-                    <button className="submitBtn" onClick={addLetter}>
-                        완료
-                    </button>
+                <button className="submitBtn" onClick={addLetter}>
+                    완료
+                </button>
 
-                </div>
 
                 <div className="DecoContainer">
                     <img
-                        src="/svg/heart.svg"
-                        className="stickerBtn"
-                        onClick={() => toggleModal("sticker")}
-                    />
-
+                        src="/svg/heart.svg" className="stickerBtn"  onClick={() => toggleModal("sticker")} />
                     {modals.sticker && (
-                        <div className="stickerBoard">
-                            <div className="sticker-grid">
-                                {stickerImages.map((src, i) => (
-                                    <img
-                                        key={i}
-                                        src={src}
-                                        className="stickerItem"
-                                        onClick={() => selectSticker(src)}
-                                    />
-                                ))}
-                            </div>
-                        </div>
+                        <StickerBoard selectSticker={selectSticker} />
                     )}
           
-
                  
-                   { modals.image && (
-                    <div className="imageModal">
-                        <img src="/svg/upload.svg" className="uploadBtn" onClick={ClickUploadButton} />
-                            <input type="file" hidden ref={ref} onChange={fileChange} />
-
-                    </div>
-                    )}
-
                     <img src="/img/image.png" className="ImgBtn" onClick={() => toggleModal("image")} />
+                    {modals.image && (
+                        <FileInput
+                            setIsUploaded={setIsUploaded}
+                            setUploadedImage={setUploadedImage}
+                            setRawFile={setRawFile}
+                            uploadedImage={uploadedImage}
+                            setMode={setMode}
+                        />
+                    )}
                                      
                     <img src="/img/music.png" className="MusicBtn"  onClick={() => toggleModal("music")} />
                     {modals.music && (
-                        <div className="musicModal">
-                        </div>
+                        <div className="musicModal"> </div>
                     )}
                 </div> 
+
+                <StickerPostition 
+                sticker={sticker}
+                setSticker={setSticker}
+                 />
                 
-         
-               <div className="stickerPostition">
-                    {sticker.map((src, i) => (
-                     <img key={i} src={src} 
-                     className={`letterSticker sticker-${i + 1}`}
-                     onClick={() => {removeSticker(i) }}/> 
-                    ))}
-                </div>
-
-
                 <div className="letterColor">
                     {colorOptions.map((color) => (
                         <img
@@ -266,20 +203,12 @@ function Letter() {
                     ))}
                 </div>
 
-                <div className="tooltip-container">
-                    <img
-                        src="/svg/rightarrow.svg" className="arrowBtn"  onClick={changeMode} alt="전환 버튼"  />
-                    <span className="tooltipText">
-                        {mode === "letter" ? "사진 전환" : "편지 전환"}
-                    </span>
-                </div>
+                <ToolTip 
+                    mode={mode}
+                    setMode={setMode}
+                    isUploaded={isUploaded}   />
 
-            </div>
-
-            <div className="Modals">
-                {/* <div className="deleteImgModal"> 
-                <p>사진을 삭제하겠습니까?</p>
-                </div>    */}
+      
             </div>
          </div>
     );

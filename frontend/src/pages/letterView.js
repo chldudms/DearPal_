@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/letterView.css';
 import { colorOptions } from '../components/options.js';
+import LetterPaper from '../components/LetterPaper.js';
+import ToolTip from '../components/ToolTip.js';
 
 function LetterView() {
     const [letterColor, setColor] = useState("");
-    const [lineColor, setLine] = useState("");
+    const [lineColor, setLine] = useState("#E3D7FF");
     const [letter, setLetter] = useState({ // 편지 오브젝트
         title: '', 
         content: '',
@@ -12,7 +14,7 @@ function LetterView() {
         image_url: null
     });
     const [mode, setMode] = useState("letter"); // letter | image
-
+    const isUploaded = letter.image_url != null ? 1:0;
 
     // 편지지 컬러 설정 함수
     function setLetterColor(color) {
@@ -59,42 +61,32 @@ function LetterView() {
 
     return (
         <div className="letter-container">
-            <div className="letter-paper" style={{ background: letterColor }}>
+            <LetterPaper
+                page={'view'}
+                mode={mode}
+                uploadedImage={`http://localhost:5000${letter.image_url}`}
+                letterColor={letterColor}
+                lineColor={lineColor}
+                title={letter.title}
+                letterContent={letter.content}                   
+           />
 
-                <text className="letter-title ">{letter.title}</text>
-                <hr style={{ background: lineColor }} />
-
-                {mode === "letter" ? (
-                <text className="letter-content">{letter.content}</text>):
-               (letter.image_url && (
-          
-                        <img
-                            src={`http://localhost:5000${letter.image_url}`}
-                            alt="편지 이미지"
-                            className="ImagePreview"
-                        />
-                    )
-                )}
-
-
-            </div>
-                {letter.stickers && letter.stickers.length > 0 && (
+                {letter.stickers && (
                 <div className="stickerPostition">
                      { letter.stickers.map((path, i) => (
                          <img key={i} src={`${process.env.PUBLIC_URL}${path}`} 
                         className={`letterSticker sticker-${i + 1}`}
                              alt=""
-                             style={{ display: letter.image_url ? 'block' : 'none' }}                      />
+                             style={{ display: letter.stickers ? 'block' : 'none' }}                      />
                 ))}   
                 </div>)}
 
-            <div className="tooltip-container">
-                <img
-                    src="/svg/rightarrow.svg" className="arrowBtn" onClick={changeMode} alt="전환 버튼" />
-                <span className="tooltipText">
-                    {mode === "letter" ? "사진 전환" : "편지 전환"}
-                </span>
-            </div>
+                <ToolTip
+                    mode={mode}
+                    setMode={setMode}
+                isUploaded={isUploaded}
+                 />
+
 
 
         </div>

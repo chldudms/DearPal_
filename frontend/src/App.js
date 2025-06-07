@@ -1,7 +1,7 @@
 import Index from "./pages/index.js"
 import PublicPostbox from "./pages/publicPostbox.js"
 import LetterView from "./pages/letterView.js"
-import Letter from "./pages/Letter.js"
+import Letter from "./pages/writeLetter.js"
 import Profile from "./pages/Profile.js"
 import Login from "./pages/Login.js";
 import Join from "./pages/Join.js";
@@ -31,7 +31,6 @@ function App() {
         <Route path="/Letter" element={<Letter />}></Route>
         <Route path="/LetterView" element={<LetterView />}></Route>
         <Route path="/mypostbox" element={<MyPostbox />}></Route>
-
         <Route path="*" element={<h1>404 Not Found 😭</h1>} />
 
 

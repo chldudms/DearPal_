@@ -3,11 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Navibar from "../components/Navibar";
 import '../styles/publicPostbox.css'
 import { jwtDecode } from "jwt-decode";
-// import { response } from "express";
 import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
-import PaginationItem from '@mui/material/PaginationItem';
-
 
 const PublicPostbox = () => {
     const navigate = useNavigate();
