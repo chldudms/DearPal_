@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import '../styles/writeletter.css'
 import { useNavigate } from 'react-router-dom';
 import { jwtDecode } from "jwt-decode";
-import { colorOptions, stickerImages} from '../components/colorOptions.js';
+import { colorOptions, stickerImages} from '../components/options.js';
 
 
 function Letter() {
@@ -188,7 +188,7 @@ function Letter() {
                     ) : (
                          isUploaded && uploadedImage && (
                           <div>
-                                     <img src={uploadedImage} className="ImagePreview" onClick={()=>toggleModal("deleteImgModal")} />
+                           <img src={uploadedImage} className="ImagePreview" onClick={()=>toggleModal("deleteImgModal")} />
                           </div>
                         )
                     )}
@@ -202,7 +202,7 @@ function Letter() {
 
                 <div className="DecoContainer">
                     <img
-                        src="/img/sticker.png"
+                        src="/svg/heart.svg"
                         className="stickerBtn"
                         onClick={() => toggleModal("sticker")}
                     />
@@ -225,7 +225,6 @@ function Letter() {
                  
                    { modals.image && (
                     <div className="imageModal">
-                        <img src="/svg/camera.svg" className="cameraBtn" />
 
                         <img src="/svg/upload.svg" className="uploadBtn" onClick={ClickUploadButton} />
                         <input type="file" hidden ref={ref} onChange={fileChange} />

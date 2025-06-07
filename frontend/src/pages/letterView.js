@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import '../styles/letterView.css';
-import { colorOptions } from '../components/colorOptions.js';
+import { colorOptions } from '../components/options.js';
 
 function LetterView(){
     const [letterColor, setColor] = useState(""); //편지지 컬러

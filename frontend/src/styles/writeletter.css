@@ -135,8 +135,11 @@ hr {
 
 
 .imageModal{
-    width: 300px;
+    width: 200px;
     height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: fixed;
     top: 150px;
     right: 30px;
@@ -156,12 +159,7 @@ hr {
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.imageModal {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 50px;
-}
+
 
 .ImagePreview {
     position: fixed;
