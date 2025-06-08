@@ -9,7 +9,7 @@ import MyPostbox from "./pages/myPostbox.js";
 import React from "react";
 import {Routes,Route,Link}from "react-router-dom";
 import { useMediaQuery } from 'react-responsive';
-
+import MusicPlayer from "./components/MusicPlayer.js"
 
 function App() {
 
@@ -31,9 +31,9 @@ function App() {
         <Route path="/Letter" element={<Letter />}></Route>
         <Route path="/LetterView" element={<LetterView />}></Route>
         <Route path="/mypostbox" element={<MyPostbox />}></Route>
-        <Route path="*" element={<h1>404 Not Found 😭</h1>} />
-
-
+        <Route path="*" element={<h1>404 Not Found</h1>} />
+        <Route path="/music" element={<MusicPlayer />} />
+ 
     </Routes>
   
     </div>

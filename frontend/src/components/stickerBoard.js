@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { stickerImages } from '../components/options.js';
+import { stickerImages } from '../constants/options.js';
 
 
 function StickerBoard({ selectSticker }) {

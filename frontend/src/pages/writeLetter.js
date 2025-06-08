@@ -2,12 +2,13 @@ import React, { useState, useEffect, useRef } from "react";
 import '../styles/writeletter.css'
 import { useNavigate } from 'react-router-dom';
 import { jwtDecode } from "jwt-decode";
-import { colorOptions, stickerImages} from '../components/options.js';
+import { colorOptions, stickerImages} from '../constants/options.js';
 import StickerBoard from "../components/stickerBoard.js";
 import FileInput from "../components/FileInput.js";
 import StickerPostition from "../components/stickerPosition.js";
 import LetterPaper from "../components/LetterPaper.js";
 import ToolTip from "../components/ToolTip.js";
+import MusicPlayer from "../components/MusicPlayer.js";
 
 function Letter() {
     const navigate = useNavigate();
@@ -106,7 +107,7 @@ function Letter() {
        formData.append('image', rawFile);
 
 
-        if(title.length<=30&&letterContent.length>0){ 
+        if(title.length<=20&&letterContent.length>0){ 
              //편지 업로드 요청
             fetch('http://localhost:5000/addLetter', {
                      method: 'POST',
@@ -133,7 +134,7 @@ function Letter() {
 
         }
          else{
-            window.alert("제목이 너무 깁니다. 30자 내외로 다시 입력해주세요.")
+            window.alert("제목이 너무 깁니다. 20자 내외로 다시 입력해주세요.")
          }
                 
     }
@@ -182,7 +183,10 @@ function Letter() {
                                      
                     <img src="/img/music.png" className="MusicBtn"  onClick={() => toggleModal("music")} />
                     {modals.music && (
-                        <div className="musicModal"> </div>
+                        <div className="musicModal">
+                            <MusicPlayer />
+                         </div>
+                  
                     )}
                 </div> 
 
