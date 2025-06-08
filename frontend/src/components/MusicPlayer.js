@@ -1,20 +1,10 @@
-import React, { useState } from "react";
-import { Playlist } from "../constants/playlist.js";
-import "../styles/musicModal.css"; // 스타일 분리
+import React from "react"
+import { Playlist } from "../constants/playlist.js"
+import "../styles/musicModal.css"
 
-function MusicPlayer() {
-    const [selectedVideo, setSelectedVideo] = useState(null);
-    const [isPlaying, setIsPlaying] = useState(false);
+function MusicPlayer({ selectedVideo, isPlaying, playMusic }) {
 
-    const playMusic = (videoId) => {
-        if (selectedVideo === videoId) {
-            setIsPlaying((prev) => !prev);
-        } else {
-            setSelectedVideo(videoId);
-            setIsPlaying(true);
-        }
-    };
-
+    
     return (
         <div className="music-player">
             <div className="playlist">
@@ -25,40 +15,22 @@ function MusicPlayer() {
                             <p className="artist">{music.artist}</p>
                         </div>
 
-                        <img src={selectedVideo === music.videoId && isPlaying ? "/svg/stop.svg" : "/svg/playing.svg"}
+                        <img
+                            src={
+                                selectedVideo === music.videoId && isPlaying
+                                    ? "/svg/stop.svg"
+                                    : "/svg/playing.svg"
+                            }
                             className="playBtn"
-                            onClick={() => playMusic(music.videoId)}
+                            onClick={() =>
+                                playMusic(music.videoId, music.title, music.artist)
+                            }
                         />
-                       
                     </div>
                 ))}
-
-
-              
             </div>
-
-            <div className="selectedMusic">
-                <div className="music-info">
-                    <p className="title">{selectedVideo}</p>
-                    <p className="artist">{selectedVideo}</p>
-                </div>
-            </div>
-
-            {selectedVideo && isPlaying && (
-                <div className="hidden-player">
-                    <iframe
-                        width="0"
-                        height="0"
-                        src={`https://www.youtube.com/embed/${selectedVideo}?autoplay=1&controls=0&showinfo=0`}
-                        allow="autoplay"
-                        title="music-player"
-                    ></iframe>
-                </div>
-            )}
-
-            
         </div>
-    );
+    )
 }
 
-export default MusicPlayer;
+export default MusicPlayer

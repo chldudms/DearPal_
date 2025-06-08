@@ -46,3 +46,39 @@
     width: 20px;
 }
 
+.selectedMusic{
+    display: flex;
+    justify-content: flex-start;
+    background-color: #E3D7FF;
+    padding: 15px 30px;
+    width: 250px;
+    border-bottom: 1px solid #eee;
+    border-radius: 30px;
+    position: fixed;
+    left: 45px;
+    top: 45px;
+    z-index: 10;
+}
+
+
+
+.cd{
+    position: fixed;
+    top: 60px;
+    left:70px;
+}
+
+.spin {
+    animation: rotate_image 6s linear infinite;
+    transform-origin: 50% 50%;
+}
+
+@keyframes rotate_image {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.hidden-player {
+    display: none;
+}

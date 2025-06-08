@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/letterView.css';
-import { colorOptions } from '../constants/options.js';
+import { colorOptions } from '../constants/letterColor.js';
 import LetterPaper from '../components/LetterPaper.js';
 import ToolTip from '../components/ToolTip.js';
 

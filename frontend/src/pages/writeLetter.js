@@ -2,13 +2,14 @@ import React, { useState, useEffect, useRef } from "react";
 import '../styles/writeletter.css'
 import { useNavigate } from 'react-router-dom';
 import { jwtDecode } from "jwt-decode";
-import { colorOptions, stickerImages} from '../constants/options.js';
+import { colorOptions, stickerImages} from '../constants/letterColor.js';
 import StickerBoard from "../components/stickerBoard.js";
 import FileInput from "../components/FileInput.js";
 import StickerPostition from "../components/stickerPosition.js";
 import LetterPaper from "../components/LetterPaper.js";
 import ToolTip from "../components/ToolTip.js";
 import MusicPlayer from "../components/MusicPlayer.js";
+import CDPlayer from "../components/cdPlayer.js";
 
 function Letter() {
     const navigate = useNavigate();
@@ -20,11 +21,15 @@ function Letter() {
     const [lineColor, setLine] = useState("#E3D7FF");
     const [userId, setUserId] = useState("");
     const [sticker,setSticker] = useState([]);
-    const [modals, setModals] = useState({ sticker: false, image: false, music: false, deleteModal:false});
     const [uploadedImage, setUploadedImage] = useState("");
     const [isUploaded, setIsUploaded] = useState(false);
-    const [mode, setMode] = useState("letter"); // letter | image
     const [rawFile, setRawFile] = useState(null); // 실제 파일
+    const [musicTitle, setmusicTitle] = useState("")
+    const [artist, setArtist] = useState("")
+    const [selectedVideo, setSelectedVideo] = useState(null)
+    const [isPlaying, setIsPlaying] = useState(false)
+    const [modals, setModals] = useState({ sticker: false, image: false, music: false, deleteModal: false });
+    const [mode, setMode] = useState("letter"); // letter | image
 
     const toggleModal = (key) => {
         setModals((prev) => {
@@ -75,7 +80,17 @@ function Letter() {
         }
     }
 
-    const ref = useRef(null);
+    const playMusic = (videoId, newTitle, newArtist) => {
+        setmusicTitle(newTitle)
+        setArtist(newArtist)
+
+        if (selectedVideo === videoId) {
+            setIsPlaying((prev) => !prev)
+        } else {
+            setSelectedVideo(videoId)
+            setIsPlaying(true)
+        }
+    }
 
 
     useEffect(() => {
@@ -184,9 +199,35 @@ function Letter() {
                     <img src="/img/music.png" className="MusicBtn"  onClick={() => toggleModal("music")} />
                     {modals.music && (
                         <div className="musicModal">
-                            <MusicPlayer />
+                            <MusicPlayer
+                                selectedVideo={selectedVideo}
+                                isPlaying={isPlaying}
+                                playMusic={playMusic}
+                            />                        
                          </div>
                   
+                    )}
+
+                    {selectedVideo && (
+                        <CDPlayer
+                            selectedVideo={selectedVideo}
+                            isPlaying={isPlaying}
+                            title={musicTitle}
+                            artist={artist}
+                            playMusic={playMusic}
+                        />
+                    )}
+
+                    {selectedVideo && isPlaying && (
+                        <div className="hidden-player">
+                            <iframe
+                                width="0"
+                                height="0"
+                                src={`https://www.youtube.com/embed/${selectedVideo}?autoplay=1&controls=0&showinfo=0`}
+                                allow="autoplay"
+                                title="music-player"
+                            ></iframe>
+                        </div>
                     )}
                 </div> 
 
