@@ -119,8 +119,9 @@ function Letter() {
        formData.append('letterContent', letterContent);
        formData.append('selectedColor', selectedColor);
        formData.append('sticker', JSON.stringify(sticker));
+       formData.append('musicTitle', musicTitle)
        formData.append('image', rawFile);
-
+ㅇ
 
         if(title.length<=20&&letterContent.length>0){ 
              //편지 업로드 요청
@@ -253,7 +254,6 @@ function Letter() {
                     setMode={setMode}
                     isUploaded={isUploaded}   />
 
-      
             </div>
          </div>
     );

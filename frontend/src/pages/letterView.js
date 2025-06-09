@@ -3,6 +3,8 @@ import '../styles/letterView.css';
 import { colorOptions } from '../constants/letterColor.js';
 import LetterPaper from '../components/LetterPaper.js';
 import ToolTip from '../components/ToolTip.js';
+import CDPlayer from "../components/cdPlayer.js";
+import { Playlist } from '../constants/playlist.js';
 
 function LetterView() {
     const [letterColor, setColor] = useState("");
@@ -15,6 +17,33 @@ function LetterView() {
     });
     const [mode, setMode] = useState("letter"); // letter | image
     const isUploaded = letter.image_url != null ? 1:0;
+    const [musicTitle, setmusicTitle] = useState("") 
+    const [artist, setArtist] = useState("")
+    const [selectedVideo, setSelectedVideo] = useState(null)
+    const [isPlaying, setIsPlaying] = useState(false)
+
+    const playMusic = (videoId, newTitle, newArtist) => {
+        setmusicTitle(newTitle)
+        setArtist(newArtist)
+
+        if (selectedVideo === videoId) {
+            setIsPlaying((prev) => !prev)
+        } else {
+            setSelectedVideo(videoId)
+            setIsPlaying(true)
+        }
+    }
+
+    function findMusic(musicTitle) { // 뮤직 타이틀로 나머지 요소 찾기
+        Playlist.forEach(item => {
+            if (item.title === musicTitle) {
+                setmusicTitle(musicTitle)
+                setArtist(item.artist)
+                setSelectedVideo(item.videoId)
+            }
+        })
+    }
+
 
     // 편지지 컬러 설정 함수
     function setLetterColor(color) {
@@ -25,9 +54,6 @@ function LetterView() {
         }
     }
 
-    const changeMode = () => {
-        setMode(prev => (prev === "letter" ? "image" : "letter"));
-    };
 
     useEffect(() => {
         const letterData = JSON.parse(localStorage.getItem('letterData'));
@@ -47,8 +73,7 @@ function LetterView() {
             .then(data => {
                 setLetter(data.letter);
                 setLetterColor(data.letter.color);
-
-                console.log("스티커 데이터:", data.letter.stickers);
+                findMusic(data.letter.music)
           
             })
             .catch(error => {
@@ -87,7 +112,27 @@ function LetterView() {
                 isUploaded={isUploaded}
                  />
 
+            {musicTitle&&
+                <CDPlayer
+                    selectedVideo={selectedVideo}
+                    isPlaying={isPlaying}
+                    title={musicTitle}
+                    artist={artist}
+                    playMusic={playMusic}
+                />
+            }
 
+            {selectedVideo && isPlaying && (
+                <div className="hidden-player">
+                    <iframe
+                        width="0"
+                        height="0"
+                        src={`https://www.youtube.com/embed/${selectedVideo}?autoplay=1&controls=0&showinfo=0`}
+                        allow="autoplay"
+                        title="music-player"
+                    ></iframe>
+                </div>
+            )}
 
         </div>
     );
