@@ -122,12 +122,14 @@ function LetterView() {
                  />
 
             {musicTitle&&
+
                 <CDPlayer
                     selectedVideo={selectedVideo}
                     isPlaying={isPlaying}
                     title={musicTitle}
                     artist={artist}
                     playMusic={playMusic}
+                    customTop="50px" 
                 />
             }
 

@@ -20,6 +20,7 @@ function Letter() {
     const [letterColor, setColor] = useState("#FFFFFF");
     const [lineColor, setLine] = useState("#E3D7FF");
     const [userId, setUserId] = useState("");
+    const [receiverId, setReceiver] = useState("");
     const [sticker,setSticker] = useState([]);
     const [uploadedImage, setUploadedImage] = useState("");
     const [isUploaded, setIsUploaded] = useState(false);
@@ -94,6 +95,13 @@ function Letter() {
 
 
     useEffect(() => {
+        const letterData = JSON.parse(localStorage.getItem('letterData'));
+        if (!letterData) {
+            alert("편지 정보가 없습니다!");
+            return;
+        }
+        setReceiver(letterData.sender_id)
+        
         const token = localStorage.getItem("token");
         console.log("토큰값:", token); // 토큰 제대로 저장됐는지 확인
 
@@ -113,15 +121,17 @@ function Letter() {
 
 
    function addLetter(){
+
        const formData = new FormData();
        formData.append('userId', userId);
+       formData.append('receiver',receiverId)
        formData.append('title', title);
        formData.append('letterContent', letterContent);
        formData.append('selectedColor', selectedColor);
        formData.append('sticker', JSON.stringify(sticker));
        formData.append('musicTitle', musicTitle)
        formData.append('image', rawFile);
-ㅇ
+
 
         if(title.length<=20&&letterContent.length>0){ 
              //편지 업로드 요청
@@ -186,7 +196,7 @@ function Letter() {
                     )}
           
                  
-                    <img src="/img/image.png" className="ImgBtn" onClick={() => toggleModal("image")} />
+                    <img src="/svg/image.svg" className="ImgBtn" onClick={() => toggleModal("image")} />
                     {modals.image && (
                         <FileInput
                             setIsUploaded={setIsUploaded}
@@ -197,7 +207,7 @@ function Letter() {
                         />
                     )}
                                      
-                    <img src="/img/music.png" className="MusicBtn"  onClick={() => toggleModal("music")} />
+                    <img src="/svg/music.svg" className="MusicBtn"  onClick={() => toggleModal("music")} />
                     {modals.music && (
                         <div className="musicModal">
                             <MusicPlayer
