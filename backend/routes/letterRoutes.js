@@ -34,7 +34,7 @@ router.post('/addLetter', upload.single('image'), async (req, res) => {
 
     db.query(
         'INSERT INTO letter (sender_id, receiver_id, title, content, color, is_shared, created_at, stickers, image_url, music) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-        [userId, null, title, letterContent, selectedColor, 1, today, sticker, imagePath, musicTitle],
+        [userId, null , title, letterContent, selectedColor, 1, today, sticker, imagePath, musicTitle],
         (err, results) => {
             if (err) {
                 console.error("쿼리 실패:", err);
@@ -67,6 +67,71 @@ router.get('/openLetters', (req, res) => {
         return res.json({ message: '공개 편지 로드 성공', letters: results });
     });
 });
+
+
+// 보낸 편지 조회 
+router.get('/sentLetters/:userId', (req, res) => {
+    const { userId } = req.params;
+    console.log("사용자 id" + userId)
+    const sql = `
+        SELECT 
+            L.id, 
+            L.title, 
+            L.content, 
+            L.color, 
+            L.created_at, 
+            sender.username AS sender_name,       -- 보낸 사람 이름
+            receiver.username AS receiver_name    -- 받은 사람 이름
+        FROM Letter L
+        LEFT JOIN User sender ON L.sender_id = sender.id
+        LEFT JOIN User receiver ON L.receiver_id = receiver.id
+        WHERE L.sender_id = ?
+        ORDER BY L.created_at DESC
+    `;
+
+
+    db.query(sql, [userId], (err, results) => {
+        if (err) {
+            console.error('DB 에러:', err);
+            return res.status(500).json({ message: '서버 오류' });
+        }
+
+        return res.json({ message: '보낸 편지 조회 성공', letters: results });
+    });
+});
+
+
+// 받은 편지 조회
+router.get('/receivedLetters/:userId', (req, res) => {
+    const { userId } = req.params;
+    console.log("사용자 id:", userId);
+
+    const sql = `
+        SELECT 
+            L.id, 
+            L.title, 
+            L.content, 
+            L.color, 
+            L.created_at,
+            sender.username AS sender_name,       -- 보낸 사람 이름
+            receiver.username AS receiver_name    -- 받은 사람 이름
+        FROM Letter L
+        LEFT JOIN User sender ON L.sender_id = sender.id
+        LEFT JOIN User receiver ON L.receiver_id = receiver.id
+        WHERE L.receiver_id = ?
+        ORDER BY L.created_at DESC
+    `;
+
+    db.query(sql, [userId], (err, results) => {
+        if (err) {
+            console.error('DB 에러:', err);
+            return res.status(500).json({ message: '서버 오류' });
+        }
+
+        return res.json({ message: '받은 편지 조회 성공', letters: results });
+    });
+});
+
 
 // 편지 내용 조회 api
 router.get('/readLetter/:userName/:letterId', (req, res) => {
