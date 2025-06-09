@@ -21,9 +21,12 @@ router.use('/uploads', express.static('uploads'));
 
 //편지 업로드 api (공동 편지함, 내 편지함에서 조회)
 router.post('/addLetter', upload.single('image'), async (req, res) => {
-    const { userId, title, letterContent, selectedColor, sticker, musicTitle } = req.body;
+    const { userId, receiver, title, letterContent, selectedColor, sticker, musicTitle } = req.body;
     const imagePath = req.file ? `/uploads/${req.file.filename}` : null;
     const today = new Date();
+ 
+    const receiverId = receiver === "null" ? null : receiver;
+    const isShared=receiverId==null?1:0;
 
     console.log('req.body:', req.body);
     console.log('req.file:', req.file);
@@ -34,7 +37,7 @@ router.post('/addLetter', upload.single('image'), async (req, res) => {
 
     db.query(
         'INSERT INTO letter (sender_id, receiver_id, title, content, color, is_shared, created_at, stickers, image_url, music) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-        [userId, null , title, letterContent, selectedColor, 1, today, sticker, imagePath, musicTitle],
+        [userId, receiverId, title, letterContent, selectedColor, isShared, today, sticker, imagePath, musicTitle],
         (err, results) => {
             if (err) {
                 console.error("쿼리 실패:", err);
@@ -50,7 +53,7 @@ router.post('/addLetter', upload.single('image'), async (req, res) => {
 // 모든 편지 조회 api
 router.get('/openLetters', (req, res) => {
     const sql = `
-        SELECT L.id, L.title, L.content, L.color, L.created_at,
+        SELECT L.id, L.title, L.content, L.color, L.created_at, L.sender_id,
             U.username AS sender_name
         FROM Letter L
         JOIN User U ON L.sender_id = U.id
@@ -79,7 +82,7 @@ router.get('/sentLetters/:userId', (req, res) => {
             L.title, 
             L.content, 
             L.color, 
-            L.created_at, 
+            L.created_at,  L.sender_id,
             sender.username AS sender_name,       -- 보낸 사람 이름
             receiver.username AS receiver_name    -- 받은 사람 이름
         FROM Letter L
@@ -112,7 +115,7 @@ router.get('/receivedLetters/:userId', (req, res) => {
             L.title, 
             L.content, 
             L.color, 
-            L.created_at,
+            L.created_at, L.sender_id,
             sender.username AS sender_name,       -- 보낸 사람 이름
             receiver.username AS receiver_name    -- 받은 사람 이름
         FROM Letter L
@@ -138,8 +141,8 @@ router.get('/readLetter/:userName/:letterId', (req, res) => {
     const { userName, letterId } = req.params;
 
     const sql = `
-        SELECT L.id, L.title, L.content, L.color, L.created_at,
-               L.stickers, L.image_url, L.music,
+        SELECT L.id, L.title, L.content, L.color, L.created_at, L.sender_id,
+               L.stickers, L.image_url, L.music, 
                U.username AS sender_name
         FROM Letter L
         JOIN User U ON L.sender_id = U.id

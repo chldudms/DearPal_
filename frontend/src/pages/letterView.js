@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 import '../styles/letterView.css';
 import { colorOptions } from '../constants/letterColor.js';
 import LetterPaper from '../components/LetterPaper.js';
@@ -7,6 +8,7 @@ import CDPlayer from "../components/cdPlayer.js";
 import { Playlist } from '../constants/playlist.js';
 
 function LetterView() {
+    const navigate = useNavigate();
     const [letterColor, setColor] = useState("");
     const [lineColor, setLine] = useState("#E3D7FF");
     const [letter, setLetter] = useState({ // 편지 오브젝트
@@ -54,6 +56,12 @@ function LetterView() {
         }
     }
 
+    // 답장 보내기
+    function replyLetter(receiverName) {
+        navigate("/LetterView");
+        const letterData = { receiver_name : receiverName}
+        localStorage.setItem('letterData', JSON.stringify(letterData))    }
+
 
     useEffect(() => {
         const letterData = JSON.parse(localStorage.getItem('letterData'));
@@ -61,7 +69,8 @@ function LetterView() {
             alert("편지 정보가 없습니다!");
             return;
         }
-
+        
+        //편지 읽기
         fetch(`http://localhost:5000/readLetter/${letterData.sender_name}/${letterData.letter_id}`, {
             method: "GET",
             headers: { 'Content-Type': 'application/json' }
@@ -133,6 +142,10 @@ function LetterView() {
                     ></iframe>
                 </div>
             )}
+
+            <button className="submitBtn" onClick={() => navigate("/Letter")}>
+                딥장하기
+            </button>
 
         </div>
     );

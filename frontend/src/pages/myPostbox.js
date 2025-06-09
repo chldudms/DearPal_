@@ -21,10 +21,10 @@ const MyPostbox = () => {
         setCurrentPage(page);
     };
 
-    function letterView(letterId, senderName) {
+    function letterView(letterId, senderName, senderId) {
         navigate("/LetterView");
-        const letterData = { letter_id: letterId, sender_name: senderName };
-        localStorage.setItem('letterData', JSON.stringify(letterData));
+        const letterData = { letter_id: letterId, sender_name: senderName, sender_id: senderId }
+        localStorage.setItem('letterData', JSON.stringify(letterData))
     }
 
     useEffect(() => { 
@@ -99,7 +99,7 @@ const MyPostbox = () => {
                             className="letterItem"
                             onMouseEnter={() => setHovered(i)}
                             onMouseLeave={() => setHovered(null)}
-                            onClick={() => letterView(letter.id, letter.sender_name)}
+                            onClick={() => letterView(letter.id, letter.sender_name, letter.sender_id)}
                         >
                             <img
                                 src={hovered === i ? openSrc : closedSrc}

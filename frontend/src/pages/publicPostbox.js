@@ -3,7 +3,9 @@ import { useNavigate } from "react-router-dom";
 import Navibar from "../components/Navibar";
 import '../styles/publicPostbox.css'
 import { jwtDecode } from "jwt-decode";
+import LetterList from "../components/letterlist";
 import Pagination from '@mui/material/Pagination';
+
 
 const PublicPostbox = () => {
     const navigate = useNavigate();
@@ -13,22 +15,32 @@ const PublicPostbox = () => {
     const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 1페이지 디폴트
     const itemCnt = 8; // 한 페이지당 편지 수
 
-    const  lastLetter = currentPage * itemCnt; //페이지당 첫 번째 편지
+    const lastLetter = currentPage * itemCnt; //페이지당 첫 번째 편지
     const firstLetter = lastLetter - itemCnt; //페이지당 마지막 편지
     const currentLetters = letters.slice(firstLetter, lastLetter); // 첫번째 편지부터 마지막 편지 전까지 자르기
 
     const pageChange = (event, page) => {
-      setCurrentPage(page);
+        setCurrentPage(page);
     };
 
-    const letterPage = () => {
-            navigate("/Letter");
 
+    const letterPage = () => {
+        const prevData = JSON.parse(localStorage.getItem('letterData') || '{}');
+
+        const initLetterData = {
+            letter_id: prevData.letter_id || null,
+            sender_name: prevData.sender_name || "",
+            sender_id: null, // 보낸 사람 ID는 null
         };
 
-    function letterView(letterId,senderName){
+        localStorage.setItem('letterData', JSON.stringify(initLetterData));
+        navigate("/Letter");
+            
+        };
+
+    function letterView(letterId, senderName, senderId){
         navigate("/LetterView");
-        const letterData ={letter_id:letterId,sender_name:senderName}
+        const letterData = { letter_id: letterId, sender_name: senderName, sender_id: senderId}
         localStorage.setItem('letterData',JSON.stringify(letterData))
     }
     
@@ -45,6 +57,7 @@ const PublicPostbox = () => {
     }, []); // 토큰 디코딩
 
     useEffect(() => {
+        
         fetch("http://localhost:5000/openLetters", {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' }
@@ -83,7 +96,7 @@ const PublicPostbox = () => {
                             className="letterItem"
                             onMouseEnter={() => setHovered(i)}
                             onMouseLeave={() => setHovered(null)}
-                            onClick={() => letterView(letter.id, letter.sender_name)}
+                            onClick={() => letterView(letter.id, letter.sender_name, letter.sender_id)}
                         >
                             <img
                                 src={hovered === i ? openSrc : closedSrc}
@@ -98,21 +111,20 @@ const PublicPostbox = () => {
             </div>
 
             {/* 하단 페이징네이션 */}
-            <div style={{ display: "flex", justifyContent: "center", margin: "0px"}}>
+            <div style={{ display: "flex", justifyContent: "center", margin: "0px" }}>
                 <Pagination
-                 sx={{ '& .MuiPaginationItem-root': { //sx는 mul내부 스타일링 시스템
-                        fontSize: '1.3rem',   // 숫자 크기
-                        width: '48px',        // 버튼 너비
-                        margin: '0 5px',      // 버튼 사이 간격
-                    }
+                    sx={{
+                        '& .MuiPaginationItem-root': { //sx는 mul내부 스타일링 시스템
+                            fontSize: '1.3rem',   
+                            width: '48px',       
+                            margin: '0 5px',      
+                        }
                     }}
                     count={Math.ceil(letters.length / itemCnt)}
                     page={currentPage}
                     onChange={pageChange}
                 />
             </div>
-
-
 
       </div>
  

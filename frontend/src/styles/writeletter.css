@@ -243,39 +243,3 @@ opacity: 0.5;
 }
 
 
-.letterOption {
-    position: fixed;
-    top: 150px;
-    /* 원하는 위치 조정 */
-    right: 60px;
-    /* 원하는 위치 조정 */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    z-index: 1000;
-}
-
-.option {
-    font-size: 1.2rem;
-    cursor: pointer;
-    color: #555;
-    transition: color 0.2s;
-    padding: 8px 12px;
-}
-
-.option:hover {
-    color: #000;
-}
-
-.selected {
-    font-weight: bold;
-    color: #000;
-}
-
-.divider {
-    width: 60%;
-    height: 1px;
-    background-color: #aaa;
-    margin: 4px 0;
-    align-self: center;
-}
