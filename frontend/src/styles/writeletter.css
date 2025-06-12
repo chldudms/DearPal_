@@ -201,6 +201,7 @@ opacity: 0.5;
     left: 230px;
     display: inline-block;
     z-index: 1;
+    transition: left 0.3s ease;
 }
 
 .tooltipText {
@@ -214,6 +215,9 @@ opacity: 0.5;
     z-index: 50;
 }
 
+.tooltip-container:hover{
+left: 220px;
+}
 
 .stickerScroll{
     position: absolute;

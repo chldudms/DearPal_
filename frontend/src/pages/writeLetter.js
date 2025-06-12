@@ -32,6 +32,12 @@ function Letter() {
     const [modals, setModals] = useState({ sticker: false, image: false, music: false, deleteModal: false });
     const [mode, setMode] = useState("letter"); // letter | image
 
+
+    const GoBack = () => {
+        navigate(-1); // 이전 페이지로 이동
+    };
+
+
     const toggleModal = (key) => {
         setModals((prev) => {
             const allFalse = Object.keys(prev).reduce((acc, k) => { //오브젝트 키만 뽑아서 순회
@@ -264,6 +270,7 @@ function Letter() {
                     setMode={setMode}
                     isUploaded={isUploaded}   />
 
+                <img src='/svg/arrowBtn.svg' className='propBtn' onClick={GoBack} />
             </div>
          </div>
     );

@@ -1,8 +1,8 @@
 .writeBtn {
     all: unset;
     position: fixed;
-    bottom: 50px;
-    right: 40px;
+    bottom: 100px;
+    right: 90px;
     z-index: 3;
 }
 

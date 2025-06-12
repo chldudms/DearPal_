@@ -56,12 +56,9 @@ function LetterView() {
         }
     }
 
-    // 답장 보내기
-    function replyLetter(receiverName) {
-        navigate("/LetterView");
-        const letterData = { receiver_name : receiverName}
-        localStorage.setItem('letterData', JSON.stringify(letterData))    }
-
+    const GoBack = () => {
+        navigate(-1); // 이전 페이지로 이동
+    };
 
     useEffect(() => {
         const letterData = JSON.parse(localStorage.getItem('letterData'));
@@ -148,6 +145,8 @@ function LetterView() {
             <button className="submitBtn" onClick={() => navigate("/Letter")}>
                 딥장하기
             </button>
+
+            <img src='/svg/arrowBtn.svg' className='propBtn' onClick={GoBack}/>
 
         </div>
     );
