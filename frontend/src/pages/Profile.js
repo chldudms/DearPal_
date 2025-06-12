@@ -36,7 +36,7 @@ function ProfileModal({ onClose }) {
 
     const user = {
         name: userName || "알 수 없음",
-        profileImg: `https://api.dicebear.com/9.x/fun-emoji/svg?seed=${seed}`,
+        profileImg: `https://api.dicebear.com/9.x/glass/svg?seed=${seed}`,
     };
 
     function logout(){
@@ -55,10 +55,10 @@ function ProfileModal({ onClose }) {
         <div>
                 <div className="profileModal">
 
-                <button onClick={onClose} className="closeBtn">❌</button>
+                <button onClick={onClose} className="closeBtn">X</button>
 
                 <img src={user.profileImg} alt="프로필" className="profileImg" />
-                <img src="img/shuffle.png" onClick={() => setSeed(randomSeed())} className="shuffleBtn"></img>
+                {/* <img src="img/shuffle.png" onClick={() => setSeed(randomSeed())} className="shuffleBtn"></img> */}
 
                 <div className="profileText">
                     <h2 className="profileName">{user.name}</h2>

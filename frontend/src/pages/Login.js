@@ -50,7 +50,7 @@ function Login() {
                 </div>
                 <div className="formGroup">
                     <label htmlFor="userpw">PASSWORD</label>
-                    <input id="userpw" className="userpw" onChange={(e) => setUserPw(e.target.value)} />
+                    <input id="userpw" type='password' className="userpw" onChange={(e) => setUserPw(e.target.value)} />
                 </div>
 
                 <button className='blueBtn' onClick={gotoLogin}>완료</button>

@@ -23,7 +23,7 @@ const Navibar = () => {
         }
     }, []);
 
-    const profileImg = `https://api.dicebear.com/9.x/fun-emoji/svg?seed=${seed}`;
+    const profileImg = `https://api.dicebear.com/9.x/glass/svg?seed=${seed}`;
 
     return (
         <div>

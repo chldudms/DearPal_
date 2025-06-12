@@ -67,11 +67,11 @@ function Join() {
                     </div>
                     <div className="formGroup">
                         <label>PASSWORD</label>
-                        <input className='userid' onChange={(e) => setUserPw(e.target.value)} />
+                        <input className='userid' type='password' onChange={(e) => setUserPw(e.target.value)} />
                     </div>
                     <div className="formGroup">
                         <label>PASSWORD CHECK</label>
-                        <input className='userid' onChange={(e) => setPwCheck(e.target.value)} />
+                        <input className='userid' type='password' onChange={(e) => setPwCheck(e.target.value)} />
                     </div>
                 </form>
 
