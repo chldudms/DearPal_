@@ -19,11 +19,11 @@ const upload = multer({ storage: storage });
 router.use('/uploads', express.static('uploads'));
 
 
-//편지 업로드 api (공동 편지함, 내 편지함에서 조회)
-router.post('/addLetter', upload.single('image'), async (req, res) => {
+//편지 업로드 api (공동 편지함, 내 편지함에서 조회) 
+router.post('/addLetter', upload.single('image'), async (req, res) => { 
     const { userId, receiver, title, letterContent, selectedColor, sticker, musicTitle } = req.body;
     const imagePath = req.file ? `/uploads/${req.file.filename}` : null;
-    const today = new Date();
+    const today = new Date(); 
  
     const receiverId = receiver === "null" ? null : receiver;
     const isShared=receiverId==null?1:0;
@@ -37,7 +37,8 @@ router.post('/addLetter', upload.single('image'), async (req, res) => {
 
     db.query(
         'INSERT INTO letter (sender_id, receiver_id, title, content, color, is_shared, created_at, stickers, image_url, music) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-        [userId, receiverId, title, letterContent, selectedColor, isShared, today, sticker, imagePath, musicTitle],
+        [
+            userId, receiverId, title, letterContent, selectedColor, isShared, today, sticker, imagePath, musicTitle],
         (err, results) => {
             if (err) {
                 console.error("쿼리 실패:", err);

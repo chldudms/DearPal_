@@ -10,6 +10,7 @@ import LetterPaper from "../components/LetterPaper.js";
 import ToolTip from "../components/ToolTip.js";
 import MusicPlayer from "../components/MusicPlayer.js";
 import CDPlayer from "../components/cdPlayer.js";
+import { ModalOutsideClick } from '../hooks/modalOutside.js';
 
 function Letter() {
     const navigate = useNavigate();
@@ -32,7 +33,16 @@ function Letter() {
     const [modals, setModals] = useState({ sticker: false, image: false, music: false, deleteModal: false });
     const [mode, setMode] = useState("letter"); // letter | image
 
+    const stickerRef = useRef(null);
+    const imageRef = useRef(null);
+    const musicRef = useRef(null);
 
+    ModalOutsideClick(modals, setModals, {
+        stickerRef,
+        imageRef,
+        musicRef
+    });
+ 
     const GoBack = () => {
         navigate(-1); // 이전 페이지로 이동
     };
@@ -198,31 +208,34 @@ function Letter() {
                     <img
                         src="/svg/heart.svg" className="stickerBtn"  onClick={() => toggleModal("sticker")} />
                     {modals.sticker && (
-                        <StickerBoard selectSticker={selectSticker} />
+                        <div ref={stickerRef}>
+                            <StickerBoard selectSticker={selectSticker} />
+                        </div>
                     )}
           
                  
                     <img src="/svg/image.svg" className="ImgBtn" onClick={() => toggleModal("image")} />
                     {modals.image && (
-                        <FileInput
-                            setIsUploaded={setIsUploaded}
-                            setUploadedImage={setUploadedImage}
-                            setRawFile={setRawFile}
-                            uploadedImage={uploadedImage}
-                            setMode={setMode}
-                        />
+                        <div ref={imageRef}>
+                            <FileInput
+                                setIsUploaded={setIsUploaded}
+                                setUploadedImage={setUploadedImage}
+                                setRawFile={setRawFile}
+                                uploadedImage={uploadedImage}
+                                setMode={setMode}
+                            />
+                        </div>
                     )}
                                      
                     <img src="/svg/music.svg" className="MusicBtn"  onClick={() => toggleModal("music")} />
                     {modals.music && (
-                        <div className="musicModal">
+                        <div className="musicModal" ref={musicRef}>
                             <MusicPlayer
                                 selectedVideo={selectedVideo}
                                 isPlaying={isPlaying}
                                 playMusic={playMusic}
-                            />                        
-                         </div>
-                  
+                            />
+                        </div>
                     )}
 
                     {selectedVideo && (
