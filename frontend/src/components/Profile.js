@@ -55,7 +55,7 @@ function ProfileModal({ onClose }) {
         <div>
                 <div className="profileModal">
 
-                <button onClick={onClose} className="closeBtn">X</button>
+                {/* <button onClick={onClose} className="closeBtn">X</button> */}
 
                 <img src={user.profileImg} alt="프로필" className="profileImg" />
                 {/* <img src="img/shuffle.png" onClick={() => setSeed(randomSeed())} className="shuffleBtn"></img> */}

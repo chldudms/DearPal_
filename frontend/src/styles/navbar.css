@@ -26,7 +26,7 @@
 
 .navbar a {
     text-decoration: none;
-    color: black;
+    color: #878787;
     font-size: 30px;
     /* 글씨 크기 키우기 */
     padding: 20px 50px;
@@ -34,7 +34,7 @@
 }
 
 .navbar a:hover {
-    color: #757575;
+    color: #D18CFF;
     /* 마우스 올리면 색 변경 */
 }
 
@@ -55,3 +55,21 @@
 
 }
 
+
+.navItem {
+    display: flex;
+    align-items: center;
+    height: 60px;
+    /* 부모 높이와 맞춤 */
+    padding: 0 12px;
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.navItem.active {
+    color: #D18CFF;
+    border-bottom: 4px solid #D18CFF;
+}
