@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom"; 
+import React, { useState, useEffect, useRef } from "react";
+import { Link, useLocation } from "react-router-dom";
 import "../styles/navbar.css";
 import ProfileModal from "./Profile";
 import { jwtDecode } from "jwt-decode";
@@ -8,7 +8,20 @@ const Navibar = () => {
     const [isOpen, setOpen] = useState(false);
     const [seed, setSeed] = useState("");
     const [userId, setUserId] = useState("");
-    const location = useLocation(); // 현재 페이지 경로
+    const location = useLocation();
+    const modalRef = useRef(null); // 모달 영역 감지용
+
+    useEffect(() => { // 외부 클릭하면 모달 닫기 
+        const ClickOutside = (e) => {
+            if (isOpen && modalRef.current && !modalRef.current.contains(e.target)) {
+                setOpen(false);
+            }
+        };
+        document.addEventListener("mousedown", ClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", ClickOutside);
+        };
+    }, [isOpen]);
 
     useEffect(() => {
         const token = localStorage.getItem("token");
@@ -24,8 +37,6 @@ const Navibar = () => {
     }, []);
 
     const profileImg = `https://api.dicebear.com/9.x/glass/svg?seed=${seed}`;
-
-    // 현재 페이지와 링크를 비교해 className 부여
     const isActive = (path) => location.pathname === path;
 
     return (
@@ -51,7 +62,11 @@ const Navibar = () => {
                         onClick={() => setOpen(!isOpen)}
                         className="profile"
                     />
-                    {isOpen && <ProfileModal onClose={() => setOpen(false)} />}
+                    {isOpen && (
+                        <div ref={modalRef}>
+                            <ProfileModal onClose={() => setOpen(false)} />
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

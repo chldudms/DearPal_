@@ -3,7 +3,6 @@ import "../styles/profile.css";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 
-
 var randomSeed = () => {  //랜덤시드로 랜덤 프로필 주기 
     return Math.random().toString(36).substring(2, 10); //36진수로 변환 후 8글자 자르기 
 }

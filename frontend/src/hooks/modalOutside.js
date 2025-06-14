@@ -14,6 +14,7 @@ export function ModalOutsideClick(modals, setModals, refs) {
             if (modals.music && musicRef.current && !musicRef.current.contains(e.target)) {
                 setModals(prev => ({ ...prev, music: false }));
             }
+            
         };
 
         document.addEventListener("mousedown", listener);
