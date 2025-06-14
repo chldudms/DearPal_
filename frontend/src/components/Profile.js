@@ -52,20 +52,17 @@ function ProfileModal({ onClose }) {
 
     return (
         <div>
-                <div className="profileModal">
+            <div className="profileModal">
+                <div className="profileContent">
+                    <img src={user.profileImg} alt="프로필" className="profileImg" />
 
-                {/* <button onClick={onClose} className="closeBtn">X</button> */}
-
-                <img src={user.profileImg} alt="프로필" className="profileImg" />
-                {/* <img src="img/shuffle.png" onClick={() => setSeed(randomSeed())} className="shuffleBtn"></img> */}
-
-                <div className="profileText">
-                    <h2 className="profileName">{user.name}</h2>
+                    <div className="profileInfo">
+                        <h2 className="profileName">{user.name}</h2>
+                        <button className="logoutBtn" onClick={logout}>로그아웃</button>
+                    </div>
                 </div>
-                
-                <button className="logoutBtn" onClick={logout}> 로그아웃 </button>
+            </div>
 
-                </div>
 
         </div>
     );

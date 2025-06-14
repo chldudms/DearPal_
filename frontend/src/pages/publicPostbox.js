@@ -82,7 +82,7 @@ const PublicPostbox = () => {
     <div>
 
             <Navibar /> {/* 헤더 컴포넌트 삽입 */}
-            <button className="writeBtn" onClick={letterPage}><img src="/svg/addBtn.svg" alt="plusBtn img"/></button>
+            <button className="writeBtn" onClick={letterPage}><img src="/svg/addBtn_s.svg" alt="plusBtn img"/></button>
             
             <div className="letterList">
                 {currentLetters.map((letter, i) => {
