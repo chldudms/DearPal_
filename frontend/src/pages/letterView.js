@@ -108,7 +108,7 @@ function LetterView() {
                          <img key={i} src={`${process.env.PUBLIC_URL}${path}`} 
                         className={`letterSticker sticker-${i + 1}`}
                              alt=""
-                             style={{ display: letter.stickers ? 'block' : 'none' }}                      />
+                             style={{ display: path.length>1 ? 'block' : 'none' }}                      />
                 ))}   
                 </div>)}
 
