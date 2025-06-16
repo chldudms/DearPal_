@@ -34,7 +34,7 @@ const PublicPostbox = () => {
         };
 
         localStorage.setItem('letterData', JSON.stringify(initLetterData));
-        navigate("/Letter");
+        navigate("/writeLetter");
             
         };
 

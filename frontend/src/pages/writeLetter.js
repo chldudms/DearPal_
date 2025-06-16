@@ -206,77 +206,92 @@ function Letter() {
 
                 <div className="DecoContainer">
                     <img
-                        src="/svg/heart.svg" className="stickerBtn"  onClick={() => toggleModal("sticker")} />
-                    {modals.sticker && (
-                        <div ref={stickerRef}>
-                            <StickerBoard selectSticker={selectSticker} />
-                        </div>
-                    )}
-          
-                 
-                    <img src="/svg/image.svg" className="ImgBtn" onClick={() => toggleModal("image")} />
-                    {modals.image && (
-                        <div ref={imageRef}>
-                            <FileInput
-                                setIsUploaded={setIsUploaded}
-                                setUploadedImage={setUploadedImage}
-                                setRawFile={setRawFile}
-                                uploadedImage={uploadedImage}
-                                setMode={setMode}
-                            />
-                        </div>
-                    )}
-                                     
-                    <img src="/svg/music.svg" className="MusicBtn"  onClick={() => toggleModal("music")} />
-                    {modals.music && (
-                        <div className="musicModal" ref={musicRef}>
-                            <MusicPlayer
-                                selectedVideo={selectedVideo}
-                                isPlaying={isPlaying}
-                                playMusic={playMusic}
-                            />
-                        </div>
-                    )}
+                        src="/svg/heart.svg"
+                        className="stickerBtn"
+                        onClick={() => toggleModal("sticker")}
+                    />
+                    <img
+                        src="/svg/image.svg"
+                        className="ImgBtn"
+                        onClick={() => toggleModal("image")}
+                    />
+                    <img
+                        src="/svg/music.svg"
+                        className="MusicBtn"
+                        onClick={() => toggleModal("music")}
+                    />
+                </div>
 
-                    {selectedVideo && (
-                        <CDPlayer
+
+                {modals.sticker && (
+                    <div className="stickerModal" ref={stickerRef}>
+                        <StickerBoard selectSticker={selectSticker} />
+                    </div>
+                )}
+
+                {modals.image && (
+                    <div className="imageModal" ref={imageRef}>
+                        <FileInput
+                            setIsUploaded={setIsUploaded}
+                            setUploadedImage={setUploadedImage}
+                            setRawFile={setRawFile}
+                            uploadedImage={uploadedImage}
+                            setMode={setMode}
+                        />
+                    </div>
+                )}
+
+                {modals.music && (
+                    <div className="musicModal" ref={musicRef}>
+                        <MusicPlayer
                             selectedVideo={selectedVideo}
                             isPlaying={isPlaying}
-                            title={musicTitle}
-                            artist={artist}
                             playMusic={playMusic}
                         />
-                    )}
-
-                    {selectedVideo && isPlaying && (
-                        <div className="hidden-player">
-                            <iframe
-                                width="0"
-                                height="0"
-                                src={`https://www.youtube.com/embed/${selectedVideo}?autoplay=1&controls=0&showinfo=0`}
-                                allow="autoplay"
-                                title="music-player"
-                            ></iframe>
-                        </div>
-                    )}
-                </div> 
-
-                <StickerPostition 
+                    </div>
+                )}
+            
+            
+            <StickerPostition
                 sticker={sticker}
                 setSticker={setSticker}
-                 />
-                
-                <div className="letterColor">
-                    {colorOptions.map((color) => (
-                        <img
-                            key={color.id}
-                            src={selectedColor === color.id ? color.selectedImg : color.img}
-                            alt={color.id}
-                            onClick={() => changeColor(color.id)}
-                            style={{ cursor: "pointer", width: "50px" }}
-                        />
-                    ))}
-                </div>
+            />
+
+            <div className="letterColor">
+                {colorOptions.map((color) => (
+                    <img
+                        key={color.id}
+                        src={selectedColor === color.id ? color.selectedImg : color.img}
+                        alt={color.id}
+                        onClick={() => changeColor(color.id)}
+                        style={{ cursor: "pointer", width: "50px" }}
+                    />
+                ))}
+            </div>
+
+
+                {selectedVideo && (
+                    <CDPlayer
+                        selectedVideo={selectedVideo}
+                        isPlaying={isPlaying}
+                        title={musicTitle}
+                        artist={artist}
+                        playMusic={playMusic}
+                    />
+                )}
+
+                {selectedVideo && isPlaying && (
+                    <div className="hidden-player">
+                        <iframe
+                            width="0"
+                            height="0"
+                            src={`https://www.youtube.com/embed/${selectedVideo}?autoplay=1&controls=0&showinfo=0`}
+                            allow="autoplay"
+                            title="music-player"
+                        ></iframe>
+                    </div>
+                )}
+
 
                 <ToolTip 
                     mode={mode}

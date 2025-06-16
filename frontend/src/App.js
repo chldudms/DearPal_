@@ -28,7 +28,7 @@ function App() {
         <Route path="/Profile" element={<Profile/>}></Route>
         <Route path="/Login" element={<Login />}></Route>
         <Route path="/join" element={<Join />}></Route>
-        <Route path="/Letter" element={<Letter />}></Route>
+        <Route path="/writeLetter" element={<Letter />}></Route>
         <Route path="/LetterView" element={<LetterView />}></Route>
         <Route path="/mypostbox" element={<MyPostbox />}></Route>
         <Route path="/music" element={<MusicPlayer />} />
