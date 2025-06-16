@@ -17,7 +17,8 @@
     position: relative;
     width: 350px;
     height: 200px;
-    bottom: 50px;
+    bottom: 40px;
+    left: 20px;
     margin-bottom: 50px;
     border-radius: 20px;
     cursor: pointer;

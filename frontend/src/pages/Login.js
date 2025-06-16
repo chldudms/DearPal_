@@ -45,12 +45,9 @@ function Login() {
                 <h3 className='authText'>로그인</h3>
 
                 <div className="formGroup">
-                    <label htmlFor="userid">ID</label>
-                    <input id="userid" className="userid" onChange={(e) => setUserId(e.target.value)} />
-                </div>
-                <div className="formGroup">
-                    <label htmlFor="userpw">PASSWORD</label>
-                    <input id="userpw" type='password' className="userpw" onChange={(e) => setUserPw(e.target.value)} />
+                    <input placeholder="아이디" className="authinput"  onChange={(e) => setUserId(e.target.value)} />
+              
+                    <input placeholder="비밀번호" type="password" className="authinput" onChange={(e) => setUserPw(e.target.value)} />
                 </div>
 
                 <button className='blueBtn' onClick={gotoLogin}>완료</button>

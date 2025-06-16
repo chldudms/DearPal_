@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import Home from '.'
-import "../styles/login.css" //login페이지와 같은 css사용
+import "../styles/join.css"
 
 function Join() {
     const navigate = useNavigate();
@@ -57,21 +57,14 @@ function Join() {
                 <h3 className='authText'>회원가입</h3>
 
                 <form className='Joginform'>
-                    <div className="formGroup">
-                        <label>NICKNAME</label>
-                        <input className='userid' onChange={(e) => setName(e.target.value)} />
-                    </div>
-                    <div className="formGroup">
-                        <label>ID</label>
-                        <input className='userid' onChange={(e) => setUserId(e.target.value)} />
-                    </div>
-                    <div className="formGroup">
-                        <label>PASSWORD</label>
-                        <input className='userid' type='password' onChange={(e) => setUserPw(e.target.value)} />
-                    </div>
-                    <div className="formGroup">
-                        <label>PASSWORD CHECK</label>
-                        <input className='userid' type='password' onChange={(e) => setPwCheck(e.target.value)} />
+                    <div className="joinform">
+                        <input placeholder="사용자 이름 또는 닉네임" className='authinput' onChange={(e) => setName(e.target.value)} />
+         
+                        <input placeholder="사용자 아이디" className='authinput' onChange={(e) => setUserId(e.target.value)} />
+                  
+                        <input placeholder="비밀번호" className='authinput' type='password' onChange={(e) => setUserPw(e.target.value)} />
+                 
+                        <input placeholder="비밀번호 확인" className='authinput' type='password' onChange={(e) => setPwCheck(e.target.value)} />
                     </div>
                 </form>
 
