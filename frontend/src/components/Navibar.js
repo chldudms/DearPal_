@@ -23,6 +23,7 @@ const Navibar = () => {
         };
     }, [isOpen]);
 
+
     useEffect(() => {
         const token = localStorage.getItem("token");
         if (token) {
@@ -63,10 +64,11 @@ const Navibar = () => {
                         className="profile"
                     />
                     {isOpen && (
-                        <div ref={modalRef}>
+                        <div ref={modalRef} className="profile-modal-wrapper">
                             <ProfileModal onClose={() => setOpen(false)} />
                         </div>
                     )}
+
                 </div>
             </div>
         </div>

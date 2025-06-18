@@ -58,7 +58,6 @@ function LetterList({ letters,letterView }){
                 />
             </div>
 
-
         </div>
     )
 }

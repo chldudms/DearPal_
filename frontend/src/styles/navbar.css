@@ -49,7 +49,7 @@
 }
 
 .profile{
-    width: 70px;
+    width: 60px;
     height: auto;
     border-radius: 50%;
 
@@ -72,4 +72,13 @@
 .navItem.active {
     color: #D18CFF;
     border-bottom: 4px solid #D18CFF;
+}
+
+
+
+/* navbar.css */
+.profile-modal-wrapper {
+    position: absolute;
+    /*  네비바 아래 */
+    z-index: 999;
 }

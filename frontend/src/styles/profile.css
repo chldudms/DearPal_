@@ -1,7 +1,7 @@
 .profileModal {
     position: absolute;
-    top: 150px;
-    right: 0;
+    top: 80px;
+    right:-10px;
     background-color: #fff;
     padding: 40px;
     border-radius: 20px;
@@ -27,12 +27,11 @@
     object-fit: cover;
 }
 
-.profileInfo {
+.profileInfo {max-width: 500px;
     display: flex;
     flex-direction: column;
     gap: 12px;
     flex: 1;
-    word-break: break-word;
 }
 
 .profileName {
@@ -40,6 +39,7 @@
     font-weight: bold;
     color: #333;
     margin: 0;
+    word-break: keep-all;
 }
 
 .logoutBtn {
@@ -50,6 +50,6 @@
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    width: fit-content;
+    width: 100px;
     margin-top: 10px;
 }

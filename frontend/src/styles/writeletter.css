@@ -242,3 +242,10 @@ left: 220px;
 }
 
 
+
+.helptext{
+    position: absolute;
+    bottom: 130px;
+    left: 410px;
+    color: #848484;
+}

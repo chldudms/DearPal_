@@ -300,6 +300,9 @@ function Letter() {
 
                 <img src='/svg/arrowBtn.svg' className='propBtn' onClick={GoBack} />
             </div>
+
+            {/* <h3 className="helptext">사진 비율은 최대 1280*720(2:1비율)을 권장합니다!  
+            "모바일에서 업로드"를 이용해주세요</h3> */}
          </div>
     );
 }
