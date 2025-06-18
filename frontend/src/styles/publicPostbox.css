@@ -1,3 +1,4 @@
+
 .writeBtn {
     all: unset;
     position: fixed;
@@ -11,6 +12,7 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
     padding: 70px;
+    
 }
 
 .letterItem {
@@ -24,6 +26,7 @@
     cursor: pointer;
     transition: transform 0.2s ease;
     padding: 20px;
+    
 }
 
 .letterItem:hover {

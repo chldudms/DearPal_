@@ -87,8 +87,8 @@ const PublicPostbox = () => {
             <div className="letterList">
                 {currentLetters.map((letter, i) => {
                     const color = letter.color || "white";
-                    const closedSrc = `/svg/${color}_Letter.svg`;
-                    const openSrc = `/svg/${color}_open.svg`;
+                    const closedSrc = `/svg/${color}Letter.svg`;
+                    const openSrc = `/svg/${color}Open.svg`;
 
                     return (
                         <div
