@@ -83,7 +83,7 @@ router.get('/sentLetters/:userId', (req, res) => {
             L.title, 
             L.content, 
             L.color, 
-            L.created_at,  L.sender_id,
+            L.created_at, L.stickers, L.sender_id, 
             sender.username AS sender_name,       -- 보낸 사람 이름
             receiver.username AS receiver_name    -- 받은 사람 이름
         FROM Letter L
@@ -116,7 +116,8 @@ router.get('/receivedLetters/:userId', (req, res) => {
             L.title, 
             L.content, 
             L.color, 
-            L.created_at, L.sender_id,
+            L.created_at,  L.stickers, 
+            L.sender_id,
             sender.username AS sender_name,       -- 보낸 사람 이름
             receiver.username AS receiver_name    -- 받은 사람 이름
         FROM Letter L

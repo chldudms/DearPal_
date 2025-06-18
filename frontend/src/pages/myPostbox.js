@@ -87,8 +87,8 @@ const MyPostbox = () => {
             <div className="letterList">
                 {currentLetters.map((letter, i) => {
                     const color = letter.color || "white";
-                    const closedSrc = `/svg/${color}_Letter.svg`;
-                    const openSrc = `/svg/${color}_open.svg`;
+                    const closedSrc = `/svg/${color}Letter.svg`;
+                    const openSrc = `/svg/${color}Open.svg`;
 
                     //  받은 편지면 sender, 보낸 편지면 receiver
                     const name = selectedBox === "sent" ? letter.receiver_name : letter.sender_name;
@@ -108,6 +108,16 @@ const MyPostbox = () => {
                             />
                             <h3 className="letterTitle">{letter.title}</h3>
                             <p className="letterSender">{selectedBox == "received" ?"From. ":"To. "}{name}</p>
+
+                            {letter.stickers && letter.stickers.slice(0, 3).map((stickerUrl, i) => (
+                                <img
+                                    key={i}
+                                    src={stickerUrl}
+                                    alt={`sticker-${i}`}
+                                    className={`letterSticker_ sticker_${i + 1}`}
+                                    style={{ display: stickerUrl.length == 0 ? "none" : "block" }} />
+                            ))}
+                            
                         </div>
                     );
                 })}
