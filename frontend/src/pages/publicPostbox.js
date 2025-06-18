@@ -90,7 +90,7 @@ const PublicPostbox = () => {
                     const closedSrc = `/svg/${color}Letter.svg`;
                     const openSrc = `/svg/${color}Open.svg`;
 
-                    return (
+                    return (  
                         <div
                             key={i}
                             className="letterItem"

@@ -11,11 +11,11 @@
 .letter-paper {
     position: relative;
     /* 자식 요소 위치 기준점 */
-    left: 400px;
+    left: 450px;
     bottom: 10px;
-    width:1000px;
-    height: 600px;
-    padding: 50px;
+    width:900px;
+    height: 550px;
+    padding: 30px;
     background-color: #fff;
     border-radius: 20px;
 box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);    display: flex;
@@ -25,6 +25,7 @@ box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);    display: flex;
 }
 
 .letter-title {
+    font-family: "온글잎위씨리스트";
     font-size: 50px;
     padding: 10px;
     border: none;
@@ -40,8 +41,8 @@ hr {
 }
 
 .letter-content {
-    font-family: pretendard;
-    height: 600px;
+    font-family: "온글잎위씨리스트";
+        height: 600px;
     padding: 10px;
     font-size: 50px;
     resize: none;
@@ -74,9 +75,8 @@ hr {
     position: fixed;
     display: flex;
     gap: 20px;
-    position: relative;
-    bottom: 490px;
-    left: 600px;
+    top: 30px;
+    right: 40px;
 }
 
 
@@ -100,6 +100,7 @@ hr {
     border-radius: 30px;
 box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
+
 .sticker-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -195,7 +196,7 @@ opacity: 0.5;
 .tooltip-container {
     position: fixed;
     bottom: 300px;
-    left: 230px;
+    left: 260px;
     display: inline-block;
     z-index: 1;
     transition: left 0.3s ease;
@@ -213,7 +214,7 @@ opacity: 0.5;
 }
 
 .tooltip-container:hover{
-left: 220px;
+left: 240px;
 }
 
 .stickerScroll{

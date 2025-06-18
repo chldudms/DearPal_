@@ -80,7 +80,7 @@ function LetterView() {
                 setLetter(data.letter);
                 setLetterColor(data.letter.color);
                 findMusic(data.letter.music)
-          
+                
             })
             .catch(error => {
                 console.error( error.message);

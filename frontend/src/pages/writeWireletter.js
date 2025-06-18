@@ -1,18 +1,18 @@
 import React, { useState, useEffect, useRef } from "react";
-import '../styles/writeletter.css'
+import '../styles/wireLetter.css'
 import { useNavigate } from 'react-router-dom';
 import { jwtDecode } from "jwt-decode";
-import { colorOptions, stickerImages} from '../constants/letterColor.js';
+import { colorOptions, stickerImages } from '../constants/letterColor.js';
 import StickerBoard from "../components/stickerBoard.js";
 import FileInput from "../components/FileInput.js";
 import StickerPostition from "../components/stickerPosition.js";
-import LetterPaper from "../components/LetterPaper.js";
+import WirePaper from "../components/wirePaper.js";
 import ToolTip from "../components/ToolTip.js";
 import MusicPlayer from "../components/MusicPlayer.js";
 import CDPlayer from "../components/cdPlayer.js";
 import { ModalOutsideClick } from '../hooks/modalOutside.js';
 
-function Letter() {
+function WireLetter() {
     const navigate = useNavigate();
 
     const [title, setTitle] = useState("");
@@ -22,7 +22,7 @@ function Letter() {
     const [lineColor, setLine] = useState("#E3D7FF");
     const [userId, setUserId] = useState("");
     const [receiverId, setReceiver] = useState("");
-    const [sticker,setSticker] = useState([]);
+    const [sticker, setSticker] = useState([]);
     const [uploadedImage, setUploadedImage] = useState("");
     const [isUploaded, setIsUploaded] = useState(false);
     const [rawFile, setRawFile] = useState(null); // 실제 파일
@@ -42,7 +42,7 @@ function Letter() {
         imageRef,
         musicRef
     });
- 
+
     const GoBack = () => {
         navigate(-1); // 이전 페이지로 이동
     };
@@ -69,7 +69,7 @@ function Letter() {
         });
     };
 
-    
+
     function selectSticker(stickerImg) {
         setSticker(sticker => {
             const emptyIndex = sticker.findIndex(item => item === ""); //빈자리 찾아서 삽입
@@ -117,15 +117,15 @@ function Letter() {
             return;
         }
         setReceiver(letterData.sender_id)
-        
+
         const token = localStorage.getItem("token");
         console.log("토큰값:", token); // 토큰 제대로 저장됐는지 확인
 
         if (token) {
             try {
                 const decoded = jwtDecode(token);
-                console.log("유저 아이디:", decoded.userId); 
-                
+                console.log("유저 아이디:", decoded.userId);
+
                 setUserId(decoded.userId);
             } catch (err) {
                 console.error("토큰 디코딩 실패:", err);
@@ -136,56 +136,57 @@ function Letter() {
     }, []);
 
 
-   function addLetter(){
+    function addLetter() {
 
-       const formData = new FormData();
-       formData.append('userId', userId);
-       formData.append('receiver',receiverId)
-       formData.append('title', title);
-       formData.append('letterContent', letterContent);
-       formData.append('selectedColor', selectedColor);
-       formData.append('sticker', JSON.stringify(sticker));
-       formData.append('musicTitle', musicTitle)
-       formData.append('image', rawFile);
+        const formData = new FormData();
+        formData.append('userId', userId);
+        formData.append('receiver', receiverId)
+        formData.append('title', title);
+        formData.append('letterContent', letterContent);
+        formData.append('selectedColor', selectedColor);
+        formData.append('sticker', JSON.stringify(sticker));
+        formData.append('musicTitle', musicTitle)
+        formData.append('image', rawFile);
 
 
-        if(title.length<=20&&letterContent.length>0){ 
-             //편지 업로드 요청
+        if (title.length <= 20 && letterContent.length > 0) {
+            //편지 업로드 요청
             fetch('http://localhost:5000/addLetter', {
-                     method: 'POST',
-                     body: formData
-                 })
-                     .then(res => res.json())
-                     .then(data => {
-                         if (data.message === "편지 업로드 성공"){
-                             console.log("편지 업로드 성공");
-                             navigate("/publicPostBox");
-                         } else {
-                             console.log(data.message);
-                         }
-                     })
-                     .catch(err => {
-                         console.error(err);
-                         window.alert("서버 오류 발생");
-                     });}
-        else if(letterContent.length==0){
+                method: 'POST',
+                body: formData
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.message === "편지 업로드 성공") {
+                        console.log("편지 업로드 성공");
+                        navigate("/publicPostBox");
+                    } else {
+                        console.log(data.message);
+                    }
+                })
+                .catch(err => {
+                    console.error(err);
+                    window.alert("서버 오류 발생");
+                });
+        }
+        else if (letterContent.length == 0) {
             window.alert("편지 내용을 입력하세요!")
         }
-        else if(title.length==0){
+        else if (title.length == 0) {
             window.alert("제목을 입력하세요!")
 
         }
-         else{
+        else {
             window.alert("제목이 너무 깁니다. 20자 내외로 다시 입력해주세요.")
-         }
-                
+        }
+
     }
-    
+
 
     return (
         <div >
             <div className="letter-container">
-                <LetterPaper
+                <WirePaper
                     page={'write'}
                     mode={mode}
                     isUploaded={isUploaded}
@@ -250,25 +251,25 @@ function Letter() {
                         />
                     </div>
                 )}
-            
-            
-            <StickerPostition
-                sticker={sticker}
-                setSticker={setSticker}
-                className={"0"}
-            />
 
-            <div className="letterColor">
-                {colorOptions.map((color) => (
-                    <img
-                        key={color.id}
-                        src={selectedColor === color.id ? color.selectedImg : color.img}
-                        alt={color.id}
-                        onClick={() => changeColor(color.id)}
-                        style={{ cursor: "pointer", width: "50px" }}
-                    />
-                ))}
-            </div>
+
+                <StickerPostition
+                    sticker={sticker}
+                    setSticker={setSticker}
+                    className="wireSticker"
+                />
+
+                <div className="letterColor">
+                    {colorOptions.map((color) => (
+                        <img
+                            key={color.id}
+                            src={selectedColor === color.id ? color.selectedImg : color.img}
+                            alt={color.id}
+                            onClick={() => changeColor(color.id)}
+                            style={{ cursor: "pointer", width: "50px" }}
+                        />
+                    ))}
+                </div>
 
 
                 {selectedVideo && (
@@ -297,15 +298,15 @@ function Letter() {
                 <ToolTip 
                     mode={mode}
                     setMode={setMode}
-                    isUploaded={isUploaded}   />
-
+                    isUploaded={isUploaded}
+                    style="400px" />
                 <img src='/svg/arrowBtn.svg' className='propBtn' onClick={GoBack} />
             </div>
 
             {/* <h3 className="helptext">사진 비율은 최대 1280*720(2:1비율)을 권장합니다!  
             "모바일에서 업로드"를 이용해주세요</h3> */}
-         </div>
+        </div>
     );
 }
 
-export default Letter;
+export default WireLetter;

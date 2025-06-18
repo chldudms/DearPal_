@@ -1,6 +1,6 @@
 import { React, useRef } from "react";
 
-function stickerPostition({ sticker, setSticker }){
+function stickerPostition({ sticker, setSticker, className }){
 
     const removeSticker = (i) => {
         const newStickers = [...sticker];
@@ -12,7 +12,7 @@ function stickerPostition({ sticker, setSticker }){
         <div className="stickerPostition">
             {sticker.map((src, i) => (
                 <img key={i} src={src}
-                    className={`letterSticker sticker-${i + 1}`}
+                    className={className.length > 1 ? `${className} wireStickers sticker${i + 1}_`:`letterSticker sticker-${i + 1}`}
                     style={{ display: src ? 'block' : 'none' }}
                     onClick={() => { removeSticker(i) }} />
             ))}

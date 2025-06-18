@@ -1,13 +1,13 @@
 import React from "react";
 
-function ToolTip({mode,setMode,isUploaded}){
+function ToolTip({ mode, setMode, isUploaded, style }){
 
     const changeMode = () => {
         setMode(prev => (prev === "letter" && isUploaded == true ? "image" : "letter"));
     };
 
     return (
-        <div className="tooltip-container">
+        <div className="tooltip-container" style={{left:style}}>
             <img
                 src="/svg/contentChange.svg" className="contentChange" onClick={changeMode} alt="전환 버튼" />
             <span className="tooltipText">
