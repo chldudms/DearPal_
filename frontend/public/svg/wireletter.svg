@@ -1,0 +1,34 @@
+<svg width="346" height="433" viewBox="0 0 346 433" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g filter="url(#filter0_d_921_783)">
+<rect x="4" width="338" height="424.306" rx="20" fill="white"/>
+</g>
+<path d="M19.3978 42.0042H315.387" stroke="#D4B6E8" stroke-width="5"/>
+<line y1="-0.5" x2="296.574" y2="-0.5" transform="matrix(0.999999 0.00154779 -0.00185602 0.999998 24.9534 212.153)" stroke="#8B8B8B"/>
+<line y1="-0.5" x2="296.574" y2="-0.5" transform="matrix(0.999999 0.00154779 -0.00185602 0.999998 24.9534 229.125)" stroke="#8B8B8B"/>
+<line y1="-0.5" x2="296.574" y2="-0.5" transform="matrix(0.999999 0.00154779 -0.00185602 0.999998 24.9534 246.098)" stroke="#8B8B8B"/>
+<line y1="-0.5" x2="296.574" y2="-0.5" transform="matrix(0.999998 0.001789 -0.00160578 0.999999 24.9534 263.07)" stroke="#8B8B8B"/>
+<line y1="-0.5" x2="296.574" y2="-0.5" transform="matrix(0.999998 0.001789 -0.00160578 0.999999 24.9534 282.687)" stroke="#8B8B8B"/>
+<line y1="-0.5" x2="296.574" y2="-0.5" transform="matrix(0.999998 0.001789 -0.00160578 0.999999 24.9534 302.304)" stroke="#8B8B8B"/>
+<line y1="-0.5" x2="296.574" y2="-0.5" transform="matrix(0.999998 0.001789 -0.00160578 0.999999 24.9534 321.922)" stroke="#8B8B8B"/>
+<line y1="-0.5" x2="296.574" y2="-0.5" transform="matrix(0.999998 0.001789 -0.00160578 0.999999 24.9534 338.747)" stroke="#8B8B8B"/>
+<line y1="-0.5" x2="296.574" y2="-0.5" transform="matrix(0.999999 0.00154779 -0.00185602 0.999998 25 69)" stroke="#8B8B8B"/>
+<line y1="-0.5" x2="296.574" y2="-0.5" transform="matrix(0.999999 0.00154779 -0.00185602 0.999998 25 85.9722)" stroke="#8B8B8B"/>
+<line y1="-0.5" x2="296.574" y2="-0.5" transform="matrix(0.999999 0.00154779 -0.00185602 0.999998 25 102.944)" stroke="#8B8B8B"/>
+<line y1="-0.5" x2="296.574" y2="-0.5" transform="matrix(0.999998 0.001789 -0.00160578 0.999999 25 119.917)" stroke="#8B8B8B"/>
+<line y1="-0.5" x2="296.574" y2="-0.5" transform="matrix(0.999998 0.001789 -0.00160578 0.999999 25 139.534)" stroke="#8B8B8B"/>
+<line y1="-0.5" x2="296.574" y2="-0.5" transform="matrix(0.999998 0.001789 -0.00160578 0.999999 25 159.151)" stroke="#8B8B8B"/>
+<line y1="-0.5" x2="296.574" y2="-0.5" transform="matrix(0.999998 0.001789 -0.00160578 0.999999 25 178.768)" stroke="#8B8B8B"/>
+<line y1="-0.5" x2="296.574" y2="-0.5" transform="matrix(0.999998 0.001789 -0.00160578 0.999999 25 195.593)" stroke="#8B8B8B"/>
+<defs>
+<filter id="filter0_d_921_783" x="0" y="0" width="346" height="432.306" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="4"/>
+<feGaussianBlur stdDeviation="2"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_921_783"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_921_783" result="shape"/>
+</filter>
+</defs>
+</svg>

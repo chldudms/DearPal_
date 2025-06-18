@@ -7,6 +7,7 @@ import Login from "./pages/Login.js";
 import Join from "./pages/Join.js";
 import MyPostbox from "./pages/myPostbox.js";
 import WireLetter from "./pages/writeWireletter.js"
+import LetterChoice from "./pages/letterChoice.js"
 import React from "react";
 import {Routes,Route,Link}from "react-router-dom";
 import { useMediaQuery } from 'react-responsive';
@@ -34,6 +35,7 @@ function App() {
         <Route path="/mypostbox" element={<MyPostbox />}></Route>
         <Route path="/music" element={<MusicPlayer />} />
         <Route path="/wireLetter" element={<WireLetter />} />
+        <Route path="/LetterChoice" element={<LetterChoice />} />
         <Route path="*" element={<h1>404 Not Found</h1>} />
 
     </Routes>

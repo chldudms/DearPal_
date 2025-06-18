@@ -142,7 +142,7 @@ function LetterView() {
                 </div>
             )}
 
-            <button className="submitBtn" onClick={() => navigate("/writeLetter")}>
+            <button className="submitBtn" onClick={() => navigate("/letterchoice")}>
                 딥장하기
             </button>
 

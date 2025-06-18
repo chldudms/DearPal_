@@ -1,0 +1,60 @@
+.letter-choice-container {
+    position: fixed;
+    top: 150px;
+    left: 450px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* 추가 */
+    margin-top: 0px;
+    text-align: center;
+}
+
+.letter-choice-title {
+    font-size: 40px;
+    margin-bottom:80px;
+}
+
+.letter-options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* 추가 */
+    gap:250px;
+    flex-wrap: wrap;
+    /* 혹시 작은 화면 대비 */
+}
+
+.letter-option {
+    font-size: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.letter-option:hover {
+    transform: scale(1.05);
+}
+
+.letterimg1 {
+    position: relative;
+    top: 50px;
+    width:400px;
+    height: auto;
+    margin-bottom: 10px;
+}
+.letterimg2 {
+    width: 350px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.t{
+    position: relative;
+    top: 80px;
+    z-index: 10;
+}
