@@ -126,7 +126,7 @@ function LetterView() {
                     title={musicTitle}
                     artist={artist}
                     playMusic={playMusic}
-                    customTop="50px" 
+                    customTop="70px" 
                 />
             }
 
