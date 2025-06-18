@@ -24,7 +24,6 @@ return(
     <div className="imageModal">
         <img src="/svg/upload.svg" className="uploadBtn" onClick={ClickUploadButton} />
         <input type="file" hidden ref={ref} onChange={fileChange} />
-
     </div>
 )
 }

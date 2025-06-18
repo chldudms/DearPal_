@@ -130,6 +130,7 @@ function LetterView() {
                     mode={mode}
                     setMode={setMode}
                 isUploaded={isUploaded}
+                style={letterType == "wire" ?"400px" :"260px"}
                  />
 
             {musicTitle&&

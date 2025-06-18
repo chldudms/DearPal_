@@ -44,7 +44,7 @@ function LetterPaper({
             )
             ) : (uploadedImage && (
             <div>
-                <img src={uploadedImage} className="ImagePreview" />
+                <img src={uploadedImage} className="ImagePreview1" />
             </div> )
     )}
 

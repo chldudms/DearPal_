@@ -122,18 +122,18 @@ box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .sticker-1 {
-    bottom: 250px;
-    left: 450px;
+    bottom: 270px;
+    left: 480px;
 }
 
 .sticker-2 {
-    bottom: 230px;
-    right: 550px;
+    bottom: 250px;
+    right: 590px;
 }
 
 .sticker-3 {
-    bottom: 300px;
-    right: 430px;
+    bottom: 330px;
+    right: 510px;
 }
 
 
@@ -161,13 +161,26 @@ box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);}
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.ImagePreview {
+.ImagePreview1 {
     position: fixed;
-    top: 420px;
-    right: 300px;
+    top: 400px;
+    right: 180px;
+    width: 800px;
+    height: 400px;
     transform: translateX(-50%);
     max-width: 800px;
     max-height: 400px;
+    z-index: 2;
+    border-radius: 10px;
+}
+
+.ImagePreview2 {
+    position: fixed;
+    top: 280px;
+    right: 360px;
+    width: 600px;
+    height: 650px;
+    transform: translateX(-50%);
     z-index: 2;
     border-radius: 10px;
 }

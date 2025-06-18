@@ -20,7 +20,7 @@ function LetterChoice() {
     return (
         <div>
         <div className="letter-choice-container">
-            <p className="letter-choice-title">편지지 타입을 선택해주세요.</p>
+            <p className="letter-choice-title">편지 스타일을 선택해주세요.</p>
             <div className="letter-options">
                 <div className="letter-option" onClick={() => handleSelect("card")}>
                     <img src="/svg/cardLetter.svg" alt="카드형 편지지" className="letterimg1" />

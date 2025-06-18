@@ -73,7 +73,7 @@ function WirePaper({
                 )
             ) : (uploadedImage && (
                 <div>
-                    <img src={uploadedImage} className="ImagePreview" />
+                    <img src={uploadedImage} className="ImagePreview2" />
                 </div>)
             )}
 
