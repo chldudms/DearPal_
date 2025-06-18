@@ -21,7 +21,7 @@ router.use('/uploads', express.static('uploads'));
 
 //편지 업로드 api (공동 편지함, 내 편지함에서 조회) 
 router.post('/addLetter', upload.single('image'), async (req, res) => { 
-    const { userId, receiver, title, letterContent, selectedColor, sticker, musicTitle } = req.body;
+    const { userId, receiver, title, letterContent, selectedColor, sticker, musicTitle, letter_type } = req.body;
     const imagePath = req.file ? `/uploads/${req.file.filename}` : null;
     const today = new Date(); 
  
@@ -36,9 +36,9 @@ router.post('/addLetter', upload.single('image'), async (req, res) => {
     }
 
     db.query(
-        'INSERT INTO letter (sender_id, receiver_id, title, content, color, is_shared, created_at, stickers, image_url, music) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+        'INSERT INTO letter (sender_id, receiver_id, title, content, color, is_shared, created_at, stickers, image_url, music, letter_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
         [
-            userId, receiverId, title, letterContent, selectedColor, isShared, today, sticker, imagePath, musicTitle],
+            userId, receiverId, title, letterContent, selectedColor, isShared, today, sticker, imagePath, musicTitle, letter_type],
         (err, results) => {
             if (err) {
                 console.error("쿼리 실패:", err);
@@ -143,7 +143,7 @@ router.get('/readLetter/:userName/:letterId', (req, res) => {
 
     const sql = `
         SELECT L.id, L.title, L.content, L.color, L.created_at, L.sender_id,
-               L.stickers, L.image_url, L.music, 
+               L.stickers, L.image_url, L.music, L.letter_type,
                U.username AS sender_name
         FROM Letter L
         JOIN User U ON L.sender_id = U.id

@@ -147,6 +147,7 @@ function WireLetter() {
         formData.append('sticker', JSON.stringify(sticker));
         formData.append('musicTitle', musicTitle)
         formData.append('image', rawFile);
+        formData.append('letter_type',"wire")
 
 
         if (title.length <= 20 && letterContent.length > 0) {
@@ -256,7 +257,7 @@ function WireLetter() {
                 <StickerPostition
                     sticker={sticker}
                     setSticker={setSticker}
-                    className="wireSticker"
+                    className="wire"
                 />
 
                 <div className="letterColor">

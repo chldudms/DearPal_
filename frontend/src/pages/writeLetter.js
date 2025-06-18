@@ -147,6 +147,7 @@ function Letter() {
        formData.append('sticker', JSON.stringify(sticker));
        formData.append('musicTitle', musicTitle)
        formData.append('image', rawFile);
+       formData.append('letter_type', "card")
 
 
         if(title.length<=20&&letterContent.length>0){ 
@@ -255,7 +256,7 @@ function Letter() {
             <StickerPostition
                 sticker={sticker}
                 setSticker={setSticker}
-                className={"0"}
+                className={"card"}
             />
 
             <div className="letterColor">

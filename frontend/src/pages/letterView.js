@@ -6,6 +6,8 @@ import LetterPaper from '../components/LetterPaper.js';
 import ToolTip from '../components/ToolTip.js';
 import CDPlayer from "../components/cdPlayer.js";
 import { Playlist } from '../constants/playlist.js';
+import WirePaper from '../components/wirePaper.js';
+import StickerPostition from '../components/stickerPosition.js'
 
 function LetterView() {
     const navigate = useNavigate();
@@ -23,6 +25,7 @@ function LetterView() {
     const [artist, setArtist] = useState("")
     const [selectedVideo, setSelectedVideo] = useState(null)
     const [isPlaying, setIsPlaying] = useState(false)
+    const [letterType, setLetterType] = useState("card"); // 기본은 카드
 
     const playMusic = (videoId, newTitle, newArtist) => {
         setmusicTitle(newTitle)
@@ -79,6 +82,7 @@ function LetterView() {
             .then(data => {
                 setLetter(data.letter);
                 setLetterColor(data.letter.color);
+                setLetterType(data.letter.letter_type); // 편지 타입 추가!
                 findMusic(data.letter.music)
                 
             })
@@ -92,25 +96,35 @@ function LetterView() {
 
     return (
         <div className="letter-container">
-            <LetterPaper
-                page={'view'}
-                mode={mode}
-                uploadedImage={`http://localhost:5000${letter.image_url}`}
-                letterColor={letterColor}
-                lineColor={lineColor}
-                title={letter.title}
-                letterContent={letter.content}                   
-           />
+            {letterType === 'card' ? (
+                <LetterPaper
+                    page={'view'}
+                    mode={mode}
+                    uploadedImage={`http://localhost:5000${letter.image_url}`}
+                    letterColor={letterColor}
+                    lineColor={lineColor}
+                    title={letter.title}
+                    letterContent={letter.content}
+                />
+            ) : (
+                <WirePaper
+                    page={'view'}
+                    mode={mode}
+                    isUploaded={isUploaded}
+                    uploadedImage={`http://localhost:5000${letter.image_url}`}
+                    letterColor={letterColor}
+                    lineColor={lineColor}
+                    title={letter.title}
+                    letterContent={letter.content}
+                    
+                />
+            )}
 
-                {letter.stickers && (
-                <div className="stickerPostition">
-                     { letter.stickers.map((path, i) => (
-                         <img key={i} src={`${process.env.PUBLIC_URL}${path}`} 
-                        className={`letterSticker sticker-${i + 1}`}
-                             alt=""
-                             style={{ display: path.length>1 ? 'block' : 'none' }}                      />
-                ))}   
-                </div>)}
+
+            <StickerPostition
+                sticker={letter.stickers}
+                className={letterType}
+            />
 
                 <ToolTip
                     mode={mode}

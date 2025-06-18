@@ -54,7 +54,21 @@ function WirePaper({
                     />
                 ) : (
                     <div>
-                        <div className="letter-content">{letterContent}</div>
+                            <div
+                                className="letter-content"
+                                style={{
+                                    backgroundColor: letterColor,
+                                    backgroundImage: `repeating-linear-gradient(
+                                    to bottom,
+                                    transparent,
+                                    transparent 38px,
+                                    #8B8B8B 40px
+                                    )`,
+                                    backgroundSize: "100% 40px"
+                                }}
+                            >
+                                {letterContent}
+                            </div>
                     </div>
                 )
             ) : (uploadedImage && (

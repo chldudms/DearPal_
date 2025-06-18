@@ -41,6 +41,7 @@ hr {
     resize: none;
     border: none;
     overflow: hidden;
+    outline: none;
 }
 
 
@@ -57,7 +58,7 @@ hr {
 
 .sticker2_ {
     bottom: 100px;
-    right: 680px;
+    right: 670px;
 }
 
 .sticker3_ {
@@ -65,3 +66,27 @@ hr {
     right: 610px;
 }
 
+
+.tooltip-container {
+    position: fixed;
+    bottom: 300px;
+    left: 230px;
+    display: inline-block;
+    z-index: 1;
+    transition: left 0.3s ease;
+}
+
+.tooltipText {
+    color: #777777;
+    text-align: center;
+    position: absolute;
+    top: 50px;
+    left: 120px;
+    transform: translateX(-50%);
+    font-size: 100x;
+    z-index: 50;
+}
+
+.tooltip-container:hover {
+    left: 220px;
+}
