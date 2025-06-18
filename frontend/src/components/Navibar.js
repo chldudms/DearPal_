@@ -49,7 +49,7 @@ const Navibar = () => {
                         to="/publicPostBox"
                         className={isActive("/publicPostBox") ? "navItem active" : "navItem"}
                     >
-                        열린 편지함
+                        공개 편지함
                     </Link>
                     <Link
                         to="/mypostBox"

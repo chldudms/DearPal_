@@ -103,6 +103,17 @@ const PublicPostbox = () => {
                                 alt="letteSvg"
                                 className="letterSvg"
                             />
+
+                            {letter.stickers && letter.stickers.slice(0, 3).map((stickerUrl, i) => (
+                                <img
+                                    key={i}
+                                    src={stickerUrl}
+                                    alt={`sticker-${i}`}
+                                    className={`letterSticker_ sticker_${i + 1}`}
+                                    style={{ display: stickerUrl.length == 0 ? "none" : "block" }} />
+                            ))}
+
+
                             <h3 className="letterTitle">{letter.title}</h3>
                             <p className="letterSender">From: {letter.sender_name}</p>
                         </div>

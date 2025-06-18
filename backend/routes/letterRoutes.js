@@ -54,7 +54,7 @@ router.post('/addLetter', upload.single('image'), async (req, res) => {
 // 모든 편지 조회 api
 router.get('/openLetters', (req, res) => {
     const sql = `
-        SELECT L.id, L.title, L.content, L.color, L.created_at, L.sender_id,
+        SELECT L.id, L.title, L.content, L.color, L.stickers, L.created_at, L.sender_id,
             U.username AS sender_name
         FROM Letter L
         JOIN User U ON L.sender_id = U.id
