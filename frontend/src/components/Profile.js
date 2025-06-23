@@ -46,7 +46,7 @@ function ProfileModal({ onClose }) {
         setUserName("");       // userId 상태도 초기화
         setSeed(""); // 새 시드로 리셋해줘야 다음 로그인에 반영됨
 
-        navigate("/Login")
+        navigate("/")
     }
 
 

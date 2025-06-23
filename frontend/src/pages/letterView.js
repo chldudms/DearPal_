@@ -158,7 +158,7 @@ function LetterView() {
             )}
 
             <button className="submitBtn" onClick={() => navigate("/letterchoice")}>
-                딥장하기
+                답장하기
             </button>
 
             <img src='/svg/arrowBtn.svg' className='propBtn' onClick={GoBack}/>
