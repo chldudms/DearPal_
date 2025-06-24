@@ -22,14 +22,14 @@ exports.addLetter = async (req) => {
 };
 
 exports.getOpenLetters = async () => {
-    const sql = `
-        SELECT L.id, L.title, L.content, L.color, L.stickers, L.created_at, L.sender_id,
-               U.username AS sender_name
-        FROM Letter L
-        JOIN User U ON L.sender_id = U.id
-        WHERE L.is_shared = TRUE
-        ORDER BY L.created_at DESC
-    `;
+        const sql = `
+            SELECT L.id, L.title, L.content, L.color, L.stickers, L.created_at, L.sender_id,
+                U.username AS sender_name
+            FROM Letter L
+            JOIN User U ON L.sender_id = U.id
+            WHERE L.is_shared = TRUE
+            ORDER BY L.created_at DESC
+        `;
     const [results] = await db.query(sql);
     return results;
 };

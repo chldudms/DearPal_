@@ -64,7 +64,7 @@ const PublicPostbox = () => {
         })
             .then(res => res.json())
             .then(data => {
-                if (data.message === "공개 편지 로드 성공") {
+                if (data.message === "공개 편지 조회 성공") {
                     console.log("공개 편지:", data.letters);
                     setLetters(data.letters);
                 } else {

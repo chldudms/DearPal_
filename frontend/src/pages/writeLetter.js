@@ -124,8 +124,7 @@ function Letter() {
         if (token) {
             try {
                 const decoded = jwtDecode(token);
-                console.log("유저 아이디:", decoded.userId); 
-                
+                console.log("유저 아이디:", decoded.userId);
                 setUserId(decoded.userId);
             } catch (err) {
                 console.error("토큰 디코딩 실패:", err);

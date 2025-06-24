@@ -63,7 +63,9 @@ router.post('/login', async (req, res) => {
             const isMatch = await bcrypt.compare(userPw, user.password);
             if (isMatch) {
                 //JWT토큰 생성(유저정보와 유효기간 포함)
-                const token = jwt.sign({ userId: user.id, userName: user.username, profileSeed: user.profile_image }, 'your_secret_key', { expiresIn: '1h' });
+                const token = jwt.sign(
+                    { userId: user.id, userName: user.username, profileSeed: user.profile_image },
+                     'your_secret_key', { expiresIn: '1h' });
 
                 //토큰 클라이언트에 응답으로 전달
                 return res.json({ message: '로그인 성공', token });

@@ -10,6 +10,7 @@ exports.addLetter = async (req, res) => {
     }
 };
 
+
 exports.getOpenLetters = async (req, res) => {
     try {
         const letters = await letterService.getOpenLetters();
